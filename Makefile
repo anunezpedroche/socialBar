@@ -13,16 +13,16 @@ run-react:
 
 create-db:
 	@echo " * Create the Database "
-	sudo mysql -u root -pninguna < db/create-db-skel.sql 
+	sudo mysql -u root -proot < db/create-db-skel.sql 
 
 populate-db:
 	@echo " * [ DB ] : Populate Users "
-	sudo mysql -u root -pninguna < db/populate-usuarios.sql 
-	sudo mysql -u root -pninguna < db/populate-permisos.sql 
-	sudo mysql -u root -pninguna < db/populate-tecnologias.sql 
-	sudo mysql -u root -pninguna < db/populate-projects.sql 
-	sudo mysql -u root -pninguna < db/populate-cursos.sql 
-	sudo mysql -u root -pninguna < db/populate-calificaciones.sql 
+	sudo mysql -u root -proot < db/populate-usuarios.sql 
+	sudo mysql -u root -proot < db/populate-permisos.sql 
+	sudo mysql -u root -proot < db/populate-tecnologias.sql 
+	sudo mysql -u root -proot < db/populate-projects.sql 
+	sudo mysql -u root -proot < db/populate-cursos.sql 
+	sudo mysql -u root -proot < db/populate-calificaciones.sql 
 
 install-dep: 
 	@echo " * NPM Installing dependence "
