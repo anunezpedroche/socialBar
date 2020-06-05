@@ -5,7 +5,7 @@ exports.findByNickname = async (nickname) => {
   const [
     rows,
   ] = await connection.execute(
-    "SELECT * FROM `Usuarios` WHERE `nickname` = ?",
+    "SELECT * FROM `Personal` WHERE `nickname` = ?",
     [nickname]
   );
   connection.end();
@@ -20,7 +20,7 @@ exports.findById = async (id) => {
   const connection = await model.getConnection();
   const [
     rows,
-  ] = await connection.execute("SELECT * FROM `Usuarios` WHERE `id` = ?", [id]);
+  ] = await connection.execute("SELECT * FROM `Personal` WHERE `id` = ?", [id]);
   connection.end();
   if (rows.length) {
     const user = parseUser(rows[0]);
@@ -36,7 +36,7 @@ exports.createUser = async (req, res) => {
   const [
     rows,
   ] = await connection.execute(
-    "INSERT INTO `Usuarios` VALUES (NULL,?,?,?,?,?,?,?)",
+    "INSERT INTO `Personal` VALUES (NULL,?,?,?,?,?,?,?)",
     [
       user.nickname,
       user.password,
@@ -59,7 +59,7 @@ exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   let rows = [];
   if (id != "1") {
-    rows = await connection.execute("DELETE FROM `Usuarios` WHERE `id` =  ?", [
+    rows = await connection.execute("DELETE FROM `Personal` WHERE `id` =  ?", [
       id,
     ]);
 
@@ -85,7 +85,7 @@ exports.updateUser = async (req, res) => {
   const user = req.body.user;
   if (id != "1") {
     rows = await connection.execute(
-      "UPDATE `Usuarios` set nickname =  ?, email = ?, nombre = ?, apellidos = ?, admin = ? WHERE `id` = ?",
+      "UPDATE `Personal` set nickname =  ?, email = ?, nombre = ?, apellidos = ?, admin = ? WHERE `id` = ?",
       [user.nickname, user.email, user.nombre, user.apellidos, user.admin, id]
     );
     connection.end();
@@ -98,7 +98,7 @@ exports.updateUser = async (req, res) => {
 exports.findAllUsers = async (req, res) => {
   const connection = await model.getConnection();
   const [rows] = await connection.execute(
-    "SELECT * FROM `Usuarios` ORDER BY id DESC"
+    "SELECT * FROM `Personal` ORDER BY id DESC"
   );
   connection.end();
   const users = rows.map((row) => ({

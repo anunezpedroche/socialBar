@@ -7,9 +7,9 @@ const getConnection = async () => {
 
     let config = {
         host: "localhost",
-        user: "pm_manager",
+        user: "admin_socialBar",
         password: "Covid-19",
-        database: "pm_projects",
+        database: "socialBar",
         insecureAuth: true
     };
 

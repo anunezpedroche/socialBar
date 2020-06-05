@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { whoAmI } from "./Helpers/auth-helpers";
+import Home from './Components/Home/Home';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
-
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 // Components
 import Login from "./Components/Login/Login";
 
@@ -50,7 +51,7 @@ function App({ user, logUser }) {
             {user ? <Redirect to="/Home" /> : <Login />}
           </Route>
 
-          {/*<PrivateRoute path="/Home" component={Home} exact/>*/}
+          {<PrivateRoute path="/Home" component={Home} exact/>}
 
           <Route path="/" ><Redirect to="/login" /></Route>
         </Switch>

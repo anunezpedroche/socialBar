@@ -10,12 +10,14 @@ Create table Personal (
 );
 */
 
-INSERT INTO Personal VALUES(NULL,'admin','admin','Administrador','Del Mundo', NULL);
-INSERT INTO Personal VALUES(NULL,'anunezpe','anunezpe','Adrián','Núñez Pedroche', NULL);
-INSERT INTO Personal VALUES(NULL,'apedrochen','apedrochen','Adrián','Pedroche Núñez', NULL);
-INSERT INTO Personal VALUES(NULL,'apedrochep','apedrochep','Andrés','Pedroche Piqueras', NULL);
-INSERT INTO Personal VALUES(NULL,'enunezv','enunezv','Eloy','Núñez Villar', NULL);
-INSERT INTO Personal VALUES(NULL,'sagudos','sagudos','Sandra','Agudo Sánchez', NULL);
+USE socialBar;
+
+INSERT INTO Personal VALUES(NULL,'admin','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Administrador','Del Mundo', NULL);
+INSERT INTO Personal VALUES(NULL,'anunezpe','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Adrián','Núñez Pedroche', NULL);
+INSERT INTO Personal VALUES(NULL,'apedrochen','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Adrián','Pedroche Núñez', NULL);
+INSERT INTO Personal VALUES(NULL,'apedrochep','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Andrés','Pedroche Piqueras', NULL);
+INSERT INTO Personal VALUES(NULL,'enunezv','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Eloy','Núñez Villar', NULL);
+INSERT INTO Personal VALUES(NULL,'sagudos','$2y$13$6XpE954ndmLjl5fneXq5Cu/0GjPgGHrSIYCGeu/Dz2kj4ozlpv5km','Sandra','Agudo Sánchez', NULL);
 
 /*
 Create table Locales ( 
@@ -77,31 +79,30 @@ CREATE TABLE  Mesas (
 */
 
 
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía'):
-INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía'):
-
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,1,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,2,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,4,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía');
+INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía');
 
 /*
 CREATE TABLE  Cartas ( 
