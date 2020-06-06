@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
 import { Menu, Button } from 'antd';
 import {
   AppstoreOutlined,
@@ -12,22 +12,30 @@ import {
 import { connect } from "react-redux";
 import { readUser } from "../../Redux/Reducers/UserReducer";
 import { logOutUser } from "../../Redux/Actions/UserActions";
+import Http from "../../Helpers/Http";
+import Profile from '../Profile/Profile';
+
+
 const { SubMenu } = Menu;
 
-
 const Nav = ({user}) => {
-    console.log(user);
 
     const [collapsed, setCollapsed] = useState(false);
 
     
     const toggleCollapse = () =>{
+
         setCollapsed(!collapsed);   
+    
     }
+
+    const replenishData = useCallback (async () =>{
+        const dataSource = await Http.get("/api/establishments/allEstablishments");
+    },[]);
 
         return (
           <div style={{ width: 256 }}>
-            <Button type="primary" onClick={toggleCollapse} style={{ marginBottom: 16 }}>
+            <Button type="primary" onClick={toggleCollapse}>
               {(collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>)}
             </Button>
             <Menu
@@ -38,7 +46,7 @@ const Nav = ({user}) => {
               inlineCollapsed={collapsed}
             >
               <Menu.Item key="1" icon={<PieChartOutlined />}>
-                Option 1
+                Locales
               </Menu.Item>
               <Menu.Item key="2" icon={<DesktopOutlined />}>
                 Option 2
@@ -61,6 +69,8 @@ const Nav = ({user}) => {
                 </SubMenu>
               </SubMenu>
             </Menu>
+
+            <Profile className="icons"/>
           </div>
         );
 }

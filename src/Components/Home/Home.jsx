@@ -3,12 +3,15 @@ import "./Home.css";
 // Antd
 import { Carousel } from "antd";
 import Nav from '../Nav/Nav';
+import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
 
 const Home = () => {
   return (
     <React.Fragment>
     <Nav/>
-    <div className="home">
+    <div>
       <Carousel effect="fade" autoplay autoplaySpeed="10"> 
         <div>
           <h3>SocialBar</h3>
