@@ -25,6 +25,7 @@ const PrivateRoute = ({ component: Component, user, logOutUser,...rest }) => {
       const authUser = await imLogged();
       
       
+      console.log(authUser.auth);
       if (!authUser.auth) {
         deleteCookie();
         logOutUser();
