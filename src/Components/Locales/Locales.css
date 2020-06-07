@@ -1,3 +1,7 @@
 .home{
     display: flex;
   }
+  
+.tabsEstablishments{
+  padding: 10px;
+}

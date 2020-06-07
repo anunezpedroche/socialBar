@@ -85,7 +85,7 @@ const Nav = ({user, selectedKey}) => {
 
 
 const mapStateToProps = (state) => {
-    return { user: readUser(state) };
+    return { user: readUser(state)};
   };
   
   export default connect(mapStateToProps, { logOutUser })(Nav);

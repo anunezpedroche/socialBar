@@ -35,7 +35,6 @@ const Home = () => {
         </div>
       </Carousel></Content>
         </Layout>
-        <Footer style={{minHeight:'10vh', backgroundColor:'darkblue'}}>footer</Footer>
       </Layout>
     </React.Fragment>
   );

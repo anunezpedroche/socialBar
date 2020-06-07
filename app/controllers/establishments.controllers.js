@@ -92,22 +92,20 @@ exports.updateProject = async (req, res) => {
 };
 */
 exports.allEstablishments = async (req, res) => {
-  //const connection = await model.getConnection();
-  
-  console.log(req.user);
+  const connection = await model.getConnection();
   
   let consulta;
-/*
+
   if (req.user.admin == true) {
-    consulta = "SELECT * FROM `Proyectos`";
+    consulta = "SELECT * FROM `Locales`";
   } else {
     // "select * from Proyectos inner join PerfilesProyecto where PerfilesProyecto.id = req.user.id"
     consulta =
-      "SELECT * FROM `Proyectos` INNER JOIN `PerfilesProyecto` perfProj ON perfProj.id_proyecto = `Proyectos`.id WHERE perfProj.id_usuario = ? AND perfProj.id_perfil = 3";
+      "SELECT * FROM `Locales` INNER JOIN `LocalesPerfilesPersonal` locPerfPers ON locPerfPers.id_local = `Locales`.id WHERE locPerfPers.id_personal = ?";
   }
 
   const [rows] = await connection.execute(consulta, [req.user.id]);
-  const techProjects = Promise.all(
+  /*const techProjects = Promise.all(
     rows.map(async (row) => {
       const [
         tecnologias,
@@ -172,8 +170,8 @@ exports.allEstablishments = async (req, res) => {
   ).then((resp) => {
     connection.end();
     res.send(resp);
-  });
-*/
-  //connection.end();
-  //res.send(rows);
+  });*/
+
+  connection.end();
+  res.send(rows);
 };
