@@ -91,10 +91,13 @@ exports.updateProject = async (req, res) => {
   res.status(200).send(alertMessage);
 };
 */
-exports.findAllProjects = async (req, res) => {
-  const connection = await model.getConnection();
+exports.allEstablishments = async (req, res) => {
+  //const connection = await model.getConnection();
+  
+  console.log(req.user);
+  
   let consulta;
-
+/*
   if (req.user.admin == true) {
     consulta = "SELECT * FROM `Proyectos`";
   } else {
@@ -170,7 +173,7 @@ exports.findAllProjects = async (req, res) => {
     connection.end();
     res.send(resp);
   });
-
+*/
   //connection.end();
   //res.send(rows);
 };

@@ -1,13 +1,24 @@
-import React from "react";
+import React, {useCallback,useEffect} from "react";
 import "./Locales.css";
 // Antd
 import { Carousel } from "antd";
 import Nav from '../Nav/Nav';
 import { Layout } from 'antd';
+import Http from "../../Helpers/Http";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Locales = () => {
+
+    const replenishEstablishments = useCallback(async()=>{
+        const dataSource = await Http.get("/api/establishments/allEstablishments");
+
+    },[]);
+
+    useEffect(()=>{
+        replenishEstablishments();
+    },[])
+
   return (
     <React.Fragment>
       <Layout>
