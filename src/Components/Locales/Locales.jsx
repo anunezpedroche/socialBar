@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Locales.css";
 // Antd
 import { Carousel } from "antd";
 import Nav from '../Nav/Nav';
@@ -7,33 +7,18 @@ import { Layout } from 'antd';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const Home = () => {
-
-  
-
+const Locales = () => {
   return (
     <React.Fragment>
       <Layout>
         <Header style={{minHeight:'10vh'}}>header</Header>
         <Layout>
-        <Nav selectedKey={1}/>
+        <Nav selectedKey={2}/>
         <Content
           style={{backgroundColor:'darkslateblue'}}
         >
-        <Carousel effect="fade" autoplay autoplaySpeed="10"> 
-        <div>
-          <h3>SocialBar</h3>
-        </div>
-        <div>
-          <h3>Gestión avanzada para la nueva normalidad</h3>
-        </div>
-        <div>
-          <h3></h3>
-        </div>
-        <div>
-          <h3>Powered by DAW</h3>
-        </div>
-      </Carousel></Content>
+            Haciendo pruebas
+       </Content>
         </Layout>
         <Footer style={{minHeight:'10vh', backgroundColor:'darkblue'}}>footer</Footer>
       </Layout>
@@ -41,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Locales;

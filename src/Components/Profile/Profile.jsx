@@ -11,7 +11,7 @@ import { logout as deleteCookie } from '../../Helpers/auth-helpers';
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-const Profile = ({ user, logOutUser }) => {
+const Profile = ({ user, logOutUser, collapsed }) => {
 
     const [ logginOut, setLogginOut ] = useState(false);
 
@@ -28,25 +28,40 @@ const Profile = ({ user, logOutUser }) => {
         setLogginOut(true);
     }
 
+   
     return (
         
 
-        <div className="profile">
+        <React.Fragment>
             {(logginOut ) ? <Redirect to="/login"></Redirect> : null }
-                <Avatar src={icon} size="large" /> 
-                <div className="nickname">{nickname}</div>
-                <div className="nombreCompleto">{data} &nbsp;&nbsp;
-                    <Button
-                        size="small"
+            {(collapsed)?
+            <div className="collapsedProfile">
+            <Avatar src={icon} size="medium" /> 
+            <Button
+                        size="medium"
                         shape="circle"
                         type="primary"
-                        icon={<PoweroffOutlined />
-                        }
+                        icon={<PoweroffOutlined size='medium'/>}
                         onClick={logOutUserAndRemoveCookie}
+                        className={'collapsedOffButton'}
                     />
-                </div>
-        </div>
-        
+            </div>
+            :
+            <div className="unCollapsedProfile">
+                <Avatar src={icon} size="medium" />
+                <div className="nickname">{nickname}</div>
+                <div className="nombreCompleto">{data} &nbsp;&nbsp;</div>
+                <Button
+                            className='unCollapsedOffButton'
+                            size="medium"
+                            shape="circle"
+                            type="primary"
+                            icon={<PoweroffOutlined size="medium"/>}
+                            onClick={logOutUserAndRemoveCookie}
+                        />
+            </div>
+            }
+        </React.Fragment>        
     );
 };
 

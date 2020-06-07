@@ -14,13 +14,17 @@ import { readUser } from "../../Redux/Reducers/UserReducer";
 import { logOutUser } from "../../Redux/Actions/UserActions";
 import Http from "../../Helpers/Http";
 import Profile from '../Profile/Profile';
-
+import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+const { Header, Footer, Sider, Content } = Layout;
 
 const { SubMenu } = Menu;
 
-const Nav = ({user}) => {
+const Nav = ({user, selectedKey}) => {
 
     const [collapsed, setCollapsed] = useState(false);
+    
+    const selectedKeyStr = selectedKey.toString();
 
     
     const toggleCollapse = () =>{
@@ -34,25 +38,29 @@ const Nav = ({user}) => {
     },[]);
 
         return (
-          <div style={{ width: 256 }}>
-            <Button type="primary" onClick={toggleCollapse}>
-              {(collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>)}
-            </Button>
+          <div style={{minHeight: '100vh'}}>
+            <Sider
+              collapsible
+              collapsed={collapsed}
+              onCollapse={toggleCollapse}
+              style={{minHeight:'100vh'}}
+            >
             <Menu
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
+              defaultSelectedKeys={[selectedKeyStr]}
               mode="inline"
               theme="dark"
-              inlineCollapsed={collapsed}
             >
               <Menu.Item key="1" icon={<PieChartOutlined />}>
-                Locales
+
+                Inicio
+                <Link to="/Home"/>
               </Menu.Item>
               <Menu.Item key="2" icon={<DesktopOutlined />}>
-                Option 2
+                Locales
+                <Link to="/Locales"/>
               </Menu.Item>
               <Menu.Item key="3" icon={<ContainerOutlined />}>
-                Option 3
+                Cartas
               </Menu.Item>
               <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
                 <Menu.Item key="5">Option 5</Menu.Item>
@@ -68,9 +76,9 @@ const Nav = ({user}) => {
                   <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu>
               </SubMenu>
+              <Profile collapsed={collapsed}/>
             </Menu>
-
-            <Profile className="icons"/>
+            </Sider>
           </div>
         );
 }
