@@ -1,8 +1,7 @@
 import React, {useCallback,useEffect,useState} from "react";
-import "./Locales.css";
+import "./Menu.css";
 // Antd
-import Establishments from "../Establishments/Establishments";
-import { Carousel } from "antd";
+import EstablishmentsCard from "../EstablishmentsCard/EstablishmentsCard";
 import Nav from '../Nav/Nav';
 import { Layout } from 'antd';
 import Http from "../../Helpers/Http";
@@ -17,7 +16,7 @@ import {
 const { Header, Footer, Sider, Content } = Layout;
 const { TabPane } = Tabs;
 
-const Locales = ({establishments, getAllEstablishments, selectedEstablishment,establishment}) => {
+const Menu = ({establishments, getAllEstablishments, selectedEstablishment,establishment}) => {
 
   const [loading, setLoading] = useState(false);
     const replenishEstablishments = useCallback(async()=>{
@@ -49,7 +48,7 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
             <Layout>
             <Header style={{minHeight:'10vh'}}>header</Header>
             <Layout>
-            <Nav selectedKey={2}/>
+            <Nav selectedKey={3}/>
             <Content
               style={{backgroundColor:'darkslateblue'}}
             >
@@ -60,7 +59,7 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
     
                   return (
                   <TabPane tab={establish.nombre} key={establish.id} >
-                    <Establishments establishment={establish}/>
+                    <EstablishmentsCard establishment={establish} />
                   </TabPane>
                   );
                 })}
@@ -84,4 +83,4 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getAllEstablishments,
   selectedEstablishment,
-})(Locales);
+})(Menu);

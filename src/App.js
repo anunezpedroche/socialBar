@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { whoAmI } from "./Helpers/auth-helpers";
 import Home from './Components/Home/Home';
 import Locales from './Components/Locales/Locales';
+import Menu from './Components/Menu/Menu';
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +55,7 @@ function App({ user, logUser }) {
 
           {<PrivateRoute path="/Home" component={Home} exact/>}
           {<PrivateRoute path="/Locales" component={Locales} exact/>}
+          {<PrivateRoute path="/Menu" component={Menu} exact/>}
 
           <Route path="/" ><Redirect to="/login" /></Route>
         </Switch>

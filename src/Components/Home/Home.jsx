@@ -27,7 +27,7 @@ const Home = () => {
         <div>
           <h3>Gestión avanzada para la nueva normalidad</h3>
         </div>
-        <div>
+        <div> 
           <h3></h3>
         </div>
         <div>

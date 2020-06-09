@@ -61,6 +61,7 @@ const Nav = ({user, selectedKey}) => {
               </Menu.Item>
               <Menu.Item key="3" icon={<ContainerOutlined />}>
                 Cartas
+                <Link to="/Menu"/>
               </Menu.Item>
               <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
                 <Menu.Item key="5">Option 5</Menu.Item>

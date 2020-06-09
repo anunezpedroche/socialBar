@@ -7,9 +7,9 @@ const Establishments = ({establishment}) => {
   
 
   return (
-    <React.Fragment>
+    <div className="establishmentWorkspace">
         {establishment.nombre}
-    </React.Fragment>
+    </div>
   );
 };
 
