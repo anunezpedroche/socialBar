@@ -167,8 +167,7 @@ CREATE TABLE  Platos (
 	titulo VARCHAR(255),
 	descripcion TEXT,
 	precio DECIMAL,
-	imagen VARCHAR(50),
-	categoria VARCHAR(100)
+	imagen VARCHAR(50)
 );
 */
 
