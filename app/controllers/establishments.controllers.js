@@ -4,7 +4,7 @@ const {
   parseUserExported: parseUser,
 } = require("./users.controllers");
 
-
+/*
 exports.findAllProjectsByCourse = async (req,res) => {
   const connection = await model.getConnection();
   const { id } = req.params;
@@ -90,7 +90,7 @@ exports.updateProject = async (req, res) => {
   connection.end();
   res.status(200).send(alertMessage);
 };
-
+*/
 exports.allEstablishments = async (req, res) => {
   const connection = await model.getConnection();
   
@@ -105,7 +105,7 @@ exports.allEstablishments = async (req, res) => {
   }
 
   const [rows] = await connection.execute(consulta, [req.user.id]);
-  /*const techProjects = Promise.all(
+ /* const techProjects = Promise.all(
     rows.map(async (row) => {
       const [
         tecnologias,
@@ -170,8 +170,8 @@ exports.allEstablishments = async (req, res) => {
   ).then((resp) => {
     connection.end();
     res.send(resp);
-  });*/
-
+  });
+*/
   connection.end();
   res.send(rows);
 };
