@@ -70,10 +70,13 @@ CREATE TABLE  Cartas (
 );
 
 
-CREATE TABLE PlatosCarta (
-	id_plato INT NOT NULL,
-	id_carta INT NOT NULL,
-	PRIMARY KEY (id_plato , id_carta)
+CREATE TABLE  Platos ( 
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	titulo VARCHAR(255),
+	descripcion TEXT,
+	precio DECIMAL,
+	imagen VARCHAR(50),
+	categoria VARCHAR(100)
 );
 
 

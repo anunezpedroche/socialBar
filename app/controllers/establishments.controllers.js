@@ -4,7 +4,7 @@ const {
   parseUserExported: parseUser,
 } = require("./users.controllers");
 
-/*
+
 exports.findAllProjectsByCourse = async (req,res) => {
   const connection = await model.getConnection();
   const { id } = req.params;
@@ -90,7 +90,7 @@ exports.updateProject = async (req, res) => {
   connection.end();
   res.status(200).send(alertMessage);
 };
-*/
+
 exports.allEstablishments = async (req, res) => {
   const connection = await model.getConnection();
   

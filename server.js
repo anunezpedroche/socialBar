@@ -42,6 +42,7 @@ const port = process.env.PORT || 3000;
 // Require Users routes
 app.use("/api/users", require("./app/routes/users.routes.js"));
 app.use("/api/establishments", require("./app/routes/establishments.routes.js"));
+app.use("/api/cards", require("./app/routes/cards.routes.js"));
 /*app.use("/api/projects", require("./app/routes/projects.routes.js"));
 app.use("/api/reports", require("./app/routes/reports.routes.js"));*/
 

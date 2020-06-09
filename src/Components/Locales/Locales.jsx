@@ -35,7 +35,7 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
 
         await getAllEstablishments(dataSource);
         selectedEstablishment(dataSource[1].id);
-        console.log(selectedEstablishment);
+        console.log(dataSource);
         setLoading(true);
     },[]);
 
@@ -53,11 +53,9 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
             <Content
               style={{backgroundColor:'darkslateblue'}}
             >
-              <Tabs className="tabsEstablishments" onChange={console.log("11")} defaultActiveKey={establishment.id.toString()}>
+              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id.toString()}>
                 {establishments.map((establish) =>{
-    
-                  console.log(establish.id);
-    
+
                   return (
                   <TabPane tab={establish.nombre} key={establish.id} >
                     <Establishments establishment={establish}/>

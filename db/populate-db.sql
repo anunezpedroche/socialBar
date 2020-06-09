@@ -114,16 +114,16 @@ CREATE TABLE  Cartas (
 */
 
 
-INSERT INTO Cartas VALUES(NULL,1,'Carta Semanal');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Almuerzos');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Cenas');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Fines de Semana');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Semanal');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Almuerzos');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Cenas');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Fines de Semana');
-INSERT INTO Cartas VALUES(NULL,3,'Carta Semanal');
-INSERT INTO Cartas VALUES(NULL,4,'Carta Semanal');
+INSERT INTO Cartas VALUES(NULL,1,'Carta Semanal la Repera');
+INSERT INTO Cartas VALUES(NULL,1,'Carta Almuerzos la Repera');
+INSERT INTO Cartas VALUES(NULL,1,'Carta Cenas la Repera');
+INSERT INTO Cartas VALUES(NULL,1,'Carta Fines de Semana la Repera');
+INSERT INTO Cartas VALUES(NULL,2,'Carta Semanal la Tasquita');
+INSERT INTO Cartas VALUES(NULL,2,'Carta Almuerzos la Tasquita');
+INSERT INTO Cartas VALUES(NULL,2,'Carta Cenas la Tasquita');
+INSERT INTO Cartas VALUES(NULL,2,'Carta Fines de Semana la Tasquita');
+INSERT INTO Cartas VALUES(NULL,3,'Carta Semanal la Garci');
+INSERT INTO Cartas VALUES(NULL,4,'Carta Semanal la Bugui');
 
 /*
 CREATE TABLE PlatosCarta (
@@ -161,7 +161,8 @@ CREATE TABLE  Platos (
 	titulo VARCHAR(255),
 	descripcion TEXT,
 	precio DECIMAL,
-	imagen VARCHAR(50)
+	imagen VARCHAR(50),
+	categoria VARCHAR(100)
 );
 */
 
