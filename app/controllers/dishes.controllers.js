@@ -116,3 +116,58 @@ exports.allDishes = async (req, res) => {
     res.send(dishes);
 
 };
+
+exports.createDish = async (req, res) => {
+
+  const connection = await model.getConnection();
+  const dish = parseDish(req.body.dish);
+
+  dish.creador = req.user.id ? req.user.id : 1;
+  //console.log(dish);
+
+  let imageName = "default.png";
+  console.log("hola");
+  if (req.body.dish.imagen) {
+    var base64Data = req.body.dish.imagen.replace(
+      /^data:image\/jpeg;base64,/,
+      ""
+    );
+
+    imageName =
+      req.body.dish.titulo + "_" + Date.now() + "_" + dish.creador + ".jpeg";
+    require("fs").writeFile(
+      `./src/img/dishes/${imageName}`,
+      base64Data,
+      "base64",
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
+  console.log("adios");
+  const [
+    rows,
+  ] = await connection.execute(
+    "INSERT INTO `Platos` VALUES (NULL,?,?,?,?)",
+    [dish.titulo, dish.descripcion,dish.precio, imageName]
+  );
+
+  const [ platosPersonal ] = await connection.execute("INSERT INTO `PlatosPersonal` VALUES(?,?)",[rows.insertId,dish.creador]);
+  connection.end();
+
+  dish.id = rows.insertId;
+  dish.user = req.user;
+
+  res.status(200).send(dish);
+};
+
+const parseDish = (results) => {
+  return {
+    id: results.id,
+    titulo: results.titulo,
+    descripcion: results.descripcion,
+    precio: parseFloat(results.precio),
+    imagen: results.imagen,
+    creador: results.creador,
+  };
+};
