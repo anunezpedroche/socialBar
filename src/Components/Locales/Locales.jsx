@@ -14,7 +14,7 @@ import {
   selectedEstablishment,
 } from "../../Redux/Actions/EstablishmentActions";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 const { TabPane } = Tabs;
 
 const Locales = ({establishments, getAllEstablishments, selectedEstablishment,establishment}) => {
@@ -66,7 +66,6 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
               </Tabs>
            </Content>
             </Layout>
-            <Footer style={{minHeight:'10vh', backgroundColor:'darkblue'}}>footer</Footer>
           </Layout>
       :
       ""}

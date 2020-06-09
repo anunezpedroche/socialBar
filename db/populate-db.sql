@@ -108,52 +108,58 @@ INSERT INTO Mesas VALUES(NULL,3,NULL,NULL,'Vacía');
 CREATE TABLE  Cartas ( 
 	id INT NOT NULL AUTO_INCREMENT ,
     id_local INT NOT NULL,
-	nombre VARCHAR(255),
+	nombre VARCHAR(255) NOT NULL,
+	descripcion VARCHAR(255),
+	imagen VARCHAR(255) DEFAULT "local_default.png"
     PRIMARY KEY (id,id_local)
 );
 */
 
 
-INSERT INTO Cartas VALUES(NULL,1,'Carta Semanal la Repera');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Almuerzos la Repera');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Cenas la Repera');
-INSERT INTO Cartas VALUES(NULL,1,'Carta Fines de Semana la Repera');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Semanal la Tasquita');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Almuerzos la Tasquita');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Cenas la Tasquita');
-INSERT INTO Cartas VALUES(NULL,2,'Carta Fines de Semana la Tasquita');
-INSERT INTO Cartas VALUES(NULL,3,'Carta Semanal la Garci');
-INSERT INTO Cartas VALUES(NULL,4,'Carta Semanal la Bugui');
-
+INSERT INTO Cartas VALUES(NULL,1,'Carta Semanal la Repera','Carta de lunes a viernes',NULL);
+INSERT INTO Cartas VALUES(NULL,1,'Carta Almuerzos la Repera', 'Carta de almuerzos de sábados',NULL);
+INSERT INTO Cartas VALUES(NULL,1,'Carta Cenas la Repera', 'Carta de cenas de lunes a viernes',NULL);
+INSERT INTO Cartas VALUES(NULL,1,'Carta Fines de Semana la Repera','Carta de fines de semana',NULL);
+INSERT INTO Cartas VALUES(NULL,2,'Carta Semanal la Tasquita','Carta de lunes a viernes',NULL);
+INSERT INTO Cartas VALUES(NULL,2,'Carta Almuerzos la Tasquita','Carta de almuerzos semanal',NULL);
+INSERT INTO Cartas VALUES(NULL,2,'Carta Cenas la Tasquita','Carta de cenas entre semana',NULL);
+INSERT INTO Cartas VALUES(NULL,2,'Carta Fines de Semana la Tasquita','Carta de fines de semana',NULL);
+INSERT INTO Cartas VALUES(NULL,3,'Carta Semanal la Garci','Carta para toda la semana',NULL);
+INSERT INTO Cartas VALUES(NULL,4,'Carta Semanal la Bugui','Carta para toda la semana',NULL);
+INSERT INTO Cartas VALUES(NULL,4,'Carta de arroces de la Bugui','Carta de arroces para las comidas',NULL);
 /*
 CREATE TABLE PlatosCarta (
 	id_plato INT NOT NULL,
 	id_carta INT NOT NULL,
+	id_categoria INT,
 	PRIMARY KEY (id_plato , id_carta)
 );
 */
 
 
-INSERT INTO PlatosCarta VALUES(1,1);
-INSERT INTO PlatosCarta VALUES(1,2);
-INSERT INTO PlatosCarta VALUES(1,3);
-INSERT INTO PlatosCarta VALUES(1,4);
-INSERT INTO PlatosCarta VALUES(1,5);
-INSERT INTO PlatosCarta VALUES(1,6);
-INSERT INTO PlatosCarta VALUES(1,7);
-INSERT INTO PlatosCarta VALUES(1,8);
-INSERT INTO PlatosCarta VALUES(1,9);
-INSERT INTO PlatosCarta VALUES(1,10);
-INSERT INTO PlatosCarta VALUES(2,1);
-INSERT INTO PlatosCarta VALUES(2,2);
-INSERT INTO PlatosCarta VALUES(2,3);
-INSERT INTO PlatosCarta VALUES(2,4);
-INSERT INTO PlatosCarta VALUES(2,5);
-INSERT INTO PlatosCarta VALUES(2,6);
-INSERT INTO PlatosCarta VALUES(2,7);
-INSERT INTO PlatosCarta VALUES(2,8);
-INSERT INTO PlatosCarta VALUES(2,9);
-INSERT INTO PlatosCarta VALUES(2,10);
+INSERT INTO PlatosCarta VALUES(1,1,1);
+INSERT INTO PlatosCarta VALUES(1,2,1);
+INSERT INTO PlatosCarta VALUES(1,3,1);
+INSERT INTO PlatosCarta VALUES(1,4,1);
+INSERT INTO PlatosCarta VALUES(1,5,1);
+INSERT INTO PlatosCarta VALUES(1,6,1);
+INSERT INTO PlatosCarta VALUES(1,7,1);
+INSERT INTO PlatosCarta VALUES(1,8,1);
+INSERT INTO PlatosCarta VALUES(1,9,1);
+INSERT INTO PlatosCarta VALUES(1,10,1);
+INSERT INTO PlatosCarta VALUES(2,1,1);
+INSERT INTO PlatosCarta VALUES(2,2,1);
+INSERT INTO PlatosCarta VALUES(2,3,1);
+INSERT INTO PlatosCarta VALUES(2,4,1);
+INSERT INTO PlatosCarta VALUES(2,5,1);
+INSERT INTO PlatosCarta VALUES(2,6,1);
+INSERT INTO PlatosCarta VALUES(2,7,1);
+INSERT INTO PlatosCarta VALUES(2,8,1);
+INSERT INTO PlatosCarta VALUES(2,9,1);
+INSERT INTO PlatosCarta VALUES(2,10,1);
+
+INSERT INTO PlatosPersonal VALUES(1,1);
+INSERT INTO PlatosPersonal VALUES(2,1);
 
 /*
 CREATE TABLE  Platos ( 
@@ -179,6 +185,25 @@ CREATE TABLE PlatosComandas (
 );
 
 
+CREATE TABLE Categorias (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre VARCHAR(255) NOT NULL
+)
+*/
+
+INSERT INTO Categorias VALUES(NULL,'Tapas');
+INSERT INTO Categorias VALUES(NULL,'Entrantes');
+INSERT INTO Categorias VALUES(NULL,'Bocadillos');
+INSERT INTO Categorias VALUES(NULL,'Platos');
+INSERT INTO Categorias VALUES(NULL,'Arroces');
+INSERT INTO Categorias VALUES(NULL,'Carnes');
+INSERT INTO Categorias VALUES(NULL,'Pescados');
+INSERT INTO Categorias VALUES(NULL,'Postres');
+INSERT INTO Categorias VALUES(NULL,'Bebidas');
+INSERT INTO Categorias VALUES(NULL,'Cervezas');
+INSERT INTO Categorias VALUES(NULL,'Vinos');
+INSERT INTO Categorias VALUES(NULL,'Licores');
+/*
 CREATE TABLE Comandas (
     id INT NOT NULL AUTO_INCREMENT,
     id_mesa INT NOT NULL,

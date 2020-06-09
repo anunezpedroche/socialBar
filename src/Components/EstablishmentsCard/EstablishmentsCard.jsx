@@ -63,7 +63,7 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
                   <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                 }
                 title={carta.nombre}
-                description="This is the description"
+                description={carta.descripcion}
               />
             </Card>
         )})

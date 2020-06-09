@@ -1,0 +1,10 @@
+.platosContainer{
+    display:flex;
+    flex-direction: row;
+    margin:15px;
+}
+
+.platos{
+    margin-right: 15px;
+    margin-bottom: 15px;
+}

@@ -3,6 +3,7 @@ import { whoAmI } from "./Helpers/auth-helpers";
 import Home from './Components/Home/Home';
 import Locales from './Components/Locales/Locales';
 import Menu from './Components/Menu/Menu';
+import Dishes from './Components/Dishes/Dishes';
 import {
   BrowserRouter as Router,
   Switch,
@@ -56,6 +57,7 @@ function App({ user, logUser }) {
           {<PrivateRoute path="/Home" component={Home} exact/>}
           {<PrivateRoute path="/Locales" component={Locales} exact/>}
           {<PrivateRoute path="/Menu" component={Menu} exact/>}
+          {<PrivateRoute path="/Dishes" component={Dishes} exact/>}
 
           <Route path="/" ><Redirect to="/login" /></Route>
         </Switch>

@@ -63,12 +63,9 @@ const Nav = ({user, selectedKey}) => {
                 Cartas
                 <Link to="/Menu"/>
               </Menu.Item>
-              <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-                <Menu.Item key="5">Option 5</Menu.Item>
-                <Menu.Item key="6">Option 6</Menu.Item>
-                <Menu.Item key="7">Option 7</Menu.Item>
-                <Menu.Item key="8">Option 8</Menu.Item>
-              </SubMenu>
+              
+              <Menu.Item key="4" icon={<MailOutlined />}>Mis Platos<Link to="/Dishes"/></Menu.Item>
+
               <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
                 <Menu.Item key="9">Option 9</Menu.Item>
                 <Menu.Item key="10">Option 10</Menu.Item>

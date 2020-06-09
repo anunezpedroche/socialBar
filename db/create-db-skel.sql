@@ -66,17 +66,17 @@ CREATE TABLE  Cartas (
 	id INT NOT NULL AUTO_INCREMENT ,
     id_local INT NOT NULL,
 	nombre VARCHAR(255),
+	descripcion VARCHAR(255),
+	imagen VARCHAR(255) DEFAULT 'card_default.png',
     PRIMARY KEY (id,id_local)
 );
 
 
-CREATE TABLE  Platos ( 
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	titulo VARCHAR(255),
-	descripcion TEXT,
-	precio DECIMAL,
-	imagen VARCHAR(50),
-	categoria VARCHAR(100)
+CREATE TABLE PlatosCarta (
+	id_plato INT NOT NULL,
+	id_carta INT NOT NULL,
+	id_categoria INT,
+	PRIMARY KEY (id_plato , id_carta)
 );
 
 
@@ -88,6 +88,16 @@ CREATE TABLE  Platos (
 	imagen VARCHAR(50)
 );
 
+CREATE TABLE Categorias (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE PlatosPersonal (
+	id_plato INT NOT NULL,
+	id_personal INT NOT NULL,
+	PRIMARY KEY (id_plato,id_personal)
+);
 
 CREATE TABLE PlatosComandas ( 
 	id_plato INT NOT NULL ,

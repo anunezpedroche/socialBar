@@ -25,11 +25,6 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
         await dataSource.map(async (est) =>{
           est.id = est.id.toString();
         });
-        
-        dataSource.unshift({
-          id: "0",
-          nombre: "Añadir local" 
-        });
 
         await getAllEstablishments(dataSource);
         selectedEstablishment(dataSource[1].id);
@@ -68,7 +63,6 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
               </Tabs>
            </Content>
             </Layout>
-            <Footer style={{minHeight:'10vh', backgroundColor:'darkblue'}}>footer</Footer>
           </Layout>
       :
       ""}
