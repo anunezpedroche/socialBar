@@ -22,11 +22,10 @@ require('./config/passport');
 app.use(express.json());
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 app.use(cookieParser());
-
 // Para enviar un FORM a traves de req. tal.
 // Para que solo puedas pasar archivos texto plano 
 // a traves de la URL. Gracias Carlos.
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({limit:'10mb', extended: true }));
 
 app.use(session({ 
     secret: 'secretKey',

@@ -102,7 +102,28 @@ exports.allCardsEstablishmentsId = async (req, res) => {
     "SELECT * FROM `Cartas` cards WHERE cards.id_local= ?",
     [req.params.id]
   );
+  
+  const dishesCard = Promise.all(
+
+    cards.map(async (row) => {
+      const [
+        platos
+      ] = await connection.execute(
+        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = pltsCrt.id_categoria WHERE pltsCrt.id_carta = ?"
+        , [row.id]
+      );
+
+      return {
+        ...row,
+        platos: platos
+      }
+    }
+    )
+
+
+  ).then((resp) =>{
     connection.end();
-    res.send(cards);
+    res.send(resp);
+  });
 
 };

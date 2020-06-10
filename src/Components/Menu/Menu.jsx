@@ -27,7 +27,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
         });
 
         await getAllEstablishments(dataSource);
-        selectedEstablishment(dataSource[1].id);
+        selectedEstablishment(dataSource[0].id);
         setLoading(true);
     },[]);
 

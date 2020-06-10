@@ -122,6 +122,8 @@ exports.createDish = async (req, res) => {
   const connection = await model.getConnection();
   const dish = parseDish(req.body.dish);
 
+  console.log(req);
+
   dish.creador = req.user.id ? req.user.id : 1;
   //console.log(dish);
 

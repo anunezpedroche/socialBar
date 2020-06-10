@@ -1,27 +1,28 @@
 import React, { useEffect, useCallback, useState } from "react";
 import "./EstablishmentsCard.css";
 import Http from "../../Helpers/Http";
-import { Card, Avatar } from "antd";
+import { Card, Avatar, Modal } from "antd";
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-
+import EditCardForm from '../EditCardForm/EditCardForm';
 import { connect } from "react-redux";
 import { readAllCards, readCard } from "../../Redux/Reducers/CardsReducer";
 import { getAllCards, selectedCard } from "../../Redux/Actions/CardsActions";
-import { selectedEstablishment } from "../../Redux/Actions/EstablishmentActions"
+import { selectedEstablishment } from "../../Redux/Actions/EstablishmentActions";
 import { readEstablishment } from "../../Redux/Reducers/EstablishmentReducer";
 
 const { Meta } = Card;
 // Antd
 
-const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establishment}) => {
+const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establishment, selectedCard}) => {
 
   const [loading, setLoading] = useState(false);
+  const [showEditCardForm, setShowEditCardForm] = useState(false);
 
-    console.log(establishment);
+    console.log(typeof(cards));
 
   const replenishCards = useCallback(async () => {
     const dataSource = await Http.get(
@@ -53,7 +54,7 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
                 />
               }
               actions={[
-                <SettingOutlined key={"setting"+carta.id} />,
+                <SettingOutlined key={"setting"+carta.id} onClick={()=>{setShowEditCardForm(!showEditCardForm); selectedCard(carta.id)}}/>,
                 <EditOutlined key={"edit"+carta.id} />,
                 <EllipsisOutlined key={"ellipsis"+carta.id} />,
               ]}
@@ -67,7 +68,25 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
               />
             </Card>
         )})
-            }</div>: ""}
+            }
+            </div>: ""}
+
+            <Modal
+          title="Añadir platos a la carta"
+          visible={showEditCardForm}
+          okText="Salir"
+          destroyOnClose={true}
+          onOk={() => {
+            setShowEditCardForm(!showEditCardForm);
+          }}
+          cancelText="Cancelar"
+          onCancel={() => {
+            setShowEditCardForm(!showEditCardForm);
+          }}
+          width={1000}
+        >
+          <EditCardForm />
+        </Modal>
     </div>
   );
 };
