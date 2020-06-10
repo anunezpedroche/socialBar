@@ -20,7 +20,7 @@ require('./config/passport');
 
 // Middlewares
 app.use(express.json({limit:'10mb'}));
-app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
+app.use(cors({credentials: true, origin: 'http://217.182.168.229:3001'}));
 app.use(cookieParser());
 // Para enviar un FORM a traves de req. tal.
 // Para que solo puedas pasar archivos texto plano 
