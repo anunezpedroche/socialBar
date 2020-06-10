@@ -39,6 +39,14 @@ export default class Http {
         return await res.json()
     }
 
+    static getCard = async url => {
+        const res = await fetch(`${HOST}${url}`, {
+            
+            credentials: "include",
+        })
+        return await res.json()
+    }
+
     static getFile = async url => {
         const res = await fetch(`${HOST}${url}`, {
             credentials: "include",

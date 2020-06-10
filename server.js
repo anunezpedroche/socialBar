@@ -19,7 +19,7 @@ require('./config/passport');
 */  
 
 // Middlewares
-app.use(express.json());
+app.use(express.json({limit:'10mb'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 app.use(cookieParser());
 // Para enviar un FORM a traves de req. tal.
@@ -43,6 +43,8 @@ app.use("/api/users", require("./app/routes/users.routes.js"));
 app.use("/api/establishments", require("./app/routes/establishments.routes.js"));
 app.use("/api/cards", require("./app/routes/cards.routes.js"));
 app.use("/api/dishes", require("./app/routes/dishes.routes.js"));
+app.use("/api/tables", require("./app/routes/tables.routes.js"));
+//app.use("/api/tables", require("./app/routes/tables.routes.js"));
 /*app.use("/api/projects", require("./app/routes/projects.routes.js"));
 app.use("/api/reports", require("./app/routes/reports.routes.js"));*/
 
