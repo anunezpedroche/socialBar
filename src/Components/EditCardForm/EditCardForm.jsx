@@ -7,11 +7,13 @@ import React, { useState } from "react";
 //Redux
 import { connect } from "react-redux";
 import { readCard } from "../../Redux/Reducers/CardsReducer";
+import { readAllDishes } from "../../Redux/Reducers/DishesReducer"; 
 /*import { readAllUsers } from "../../Redux/Reducers/UserReducer";
 import { readAllTechs } from "../../Redux/Reducers/TechReducer";
 import { readProject } from "../../Redux/Reducers/ProjectReducer";
-import { editProject } from "../../Redux/Actions/ProjectActions";
 */
+import { editCard } from "../../Redux/Actions/CardsActions";
+
 //Esto es la tabla y cómo se rellena
 const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
 
@@ -75,7 +77,7 @@ const leftTableColumns = [
     title: "Precio",
   },
   {
-    dataIndex: 'category',
+    dataIndex: 'categoria',
     title: 'Categoría',
     render: tag => <Tag>{tag}</Tag>,
   }
@@ -92,20 +94,20 @@ const rightTableColumns = [
         title: "Precio",
       },
       {
-        dataIndex: 'category',
+        dataIndex: 'categoria',
         title: 'Categoría',
         render: tag => <Tag>{tag}</Tag>,
       }
 ];
 
-const EditCardForm = ({ users, techs, project, editProject, card}) => {
+const EditCardForm = ({ users, techs, project, editCard, card, dishes}) => {
 
-  /*const rightTechs = techs.filter(tech => {
-    return project.tecnologias.map(tp => {return tp.id}).includes(tech.id)
+  const rightDishes = dishes.filter(dish => {
+    return card.platos.map(pc => {return pc.id}).includes(dish.id)
   });
 
-  const rightTechsKey = rightTechs.map(tech => {return tech.key})
-*/
+  const rightDishesKey = rightDishes.map(dish => {return dish.key})
+
 
   console.log(card);
 
@@ -124,32 +126,34 @@ const EditCardForm = ({ users, techs, project, editProject, card}) => {
     
   
 
-  /*const [state, setState] = useState({
-    targetKeys: {id:1},
+  const [state, setState] = useState({
+    targetKeys: rightDishesKey,
     disabled: false,
     showSearch: false,
-  });*/
+  });
 
-  //const { targetKeys } = state;
-/*
+  const { targetKeys } = state;
+
   const onChanged = (nextTargetKeys) => {
     setState({ targetKeys: nextTargetKeys });
 
-    project.tecnologias=techs.filter(tech => {
-      return nextTargetKeys.includes(tech.id)
+    card.platos=dishes.filter(dish => {
+      return nextTargetKeys.includes(dish.id.toString())
     });
     
-    editProject(project);
+    editCard(card);
   };
-*/
+
+  console.log(dishes);
+
   return (
     <div className="transferTableUsersTechs">
         <TableTransfer
-          dataSource={mockData}
-          targetKeys={"1","2"}
+          dataSource={dishes}
+          targetKeys={targetKeys}
           disabled={false}
           showSearch={true}
-          onChange={console.log(card)}
+          onChange={onChanged}
           filterOption={(inputValue, item) =>
             item.title.indexOf(inputValue) !== -1 || item.tag.indexOf(inputValue) !== -1
           }
@@ -161,7 +165,7 @@ const EditCardForm = ({ users, techs, project, editProject, card}) => {
 };
 
 const mapStateToProps = (state) => {
-  return { card: readCard(state)/*, techs: readAllTechs(state), project: readProject(state) */};
+  return { card: readCard(state), dishes: readAllDishes(state)/*, project: readProject(state) */};
 };
 
-export default connect(mapStateToProps,null)(EditCardForm);
+export default connect(mapStateToProps,{editCard})(EditCardForm);

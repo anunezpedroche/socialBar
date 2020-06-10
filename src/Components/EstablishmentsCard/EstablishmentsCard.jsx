@@ -13,16 +13,25 @@ import { readAllCards, readCard } from "../../Redux/Reducers/CardsReducer";
 import { getAllCards, selectedCard } from "../../Redux/Actions/CardsActions";
 import { selectedEstablishment } from "../../Redux/Actions/EstablishmentActions";
 import { readEstablishment } from "../../Redux/Reducers/EstablishmentReducer";
+import { getAllDishes } from "../../Redux/Actions/DishesActions";
 
 const { Meta } = Card;
 // Antd
 
-const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establishment, selectedCard}) => {
+const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establishment, selectedCard,getAllDishes}) => {
 
   const [loading, setLoading] = useState(false);
   const [showEditCardForm, setShowEditCardForm] = useState(false);
 
     console.log(typeof(cards));
+
+  const replenishDishes = useCallback(async()=>{
+    const dataSource = await Http.get("/api/dishes/allDishes");
+    getAllDishes(dataSource.map(item =>{
+      item.key = item.id.toString();
+      return item;
+    }));
+  },[]);
 
   const replenishCards = useCallback(async () => {
     const dataSource = await Http.get(
@@ -34,6 +43,7 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
 
   useEffect(() => {
     replenishCards();
+    replenishDishes();
   }, [establishment]);
 
   return (
@@ -54,8 +64,8 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
                 />
               }
               actions={[
-                <SettingOutlined key={"setting"+carta.id} onClick={()=>{setShowEditCardForm(!showEditCardForm); selectedCard(carta.id)}}/>,
-                <EditOutlined key={"edit"+carta.id} />,
+                <SettingOutlined key={"setting"+carta.id} />,
+                <EditOutlined key={"edit"+carta.id} onClick={()=>{setShowEditCardForm(!showEditCardForm); selectedCard(carta.id)}} />,
                 <EllipsisOutlined key={"ellipsis"+carta.id} />,
               ]}
             >
@@ -99,4 +109,5 @@ export default connect(mapStateToProps, {
   getAllCards,
   selectedCard,
   selectedEstablishment,
+  getAllDishes
 })(EstablishmentsCard);
