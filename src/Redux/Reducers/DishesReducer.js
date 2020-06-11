@@ -1,4 +1,4 @@
-const initialState = {dish:null,dishes:[],editDishId:-1};
+const initialState = {categories:[],dish:null,dishes:[],editDishId:-1};
 
 const reducer = (state=initialState,action) => {
     switch(action.type){
@@ -21,6 +21,11 @@ const reducer = (state=initialState,action) => {
             return{
                 ...state,
                 dishes:state.dishes.filter(dish=>dish.id!==action.id)
+            }
+        case "GET_ALL_CATEGORIES":
+            return{
+                ...state,
+                categories:action.categories
             }
         case "EDITING_DISH":
             return{
@@ -46,18 +51,16 @@ export const readDish = (state) => {
     return state.DishesReducer.dish;
 }
 
-/*export const readUserTech = (state) => {
-
-    return state.UserReducer.users.filter(user=>user.id===state.TechReducer.tech.creador);
-    
-}*/
+export const readAllCategories = (state) => {
+    return state.DishesReducer.categories;
+}
 
 export const readAllDishes = (state) => {
     return state.DishesReducer.dishes;
 }
 
 export const readDishById = (state) => {
-    return state.DishesReducer.dishes.filter(dish=>dish.id===state.CardsReducer.editCardId)[0];
+    return state.DishesReducer.dishes.filter(dish=>dish.id===state.DishesReducer.editDishId)[0];
 }
 
 export default reducer;

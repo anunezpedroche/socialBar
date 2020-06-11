@@ -35,6 +35,7 @@ const reducer = (state=initialState,action) => {
                     return action.card;
                 })
             }
+
         default:
             return {
                 ...state

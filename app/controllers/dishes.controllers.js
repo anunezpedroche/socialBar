@@ -91,6 +91,19 @@ exports.updateProject = async (req, res) => {
   res.status(200).send(alertMessage);
 };
 */
+
+exports.allCategories = async (req,res) => {
+
+  const connection = await model.getConnection();
+
+  const [ categories ] = await connection.query("SELECT * FROM Categorias");
+
+  console.log(categories);
+
+  res.send(categories);
+
+};
+
 exports.allDishes = async (req, res) => {
     const connection = await model.getConnection();
   

@@ -21,3 +21,7 @@ export const editDish = dish => {
 export const selectedDish = (id) => {
     return {type:"SELECTED_DISH",id}
 }
+
+export const getAllCategories= (categories) =>{
+    return {type:"GET_ALL_CATEGORIES",categories}
+}

@@ -8,8 +8,8 @@ import Nav from '../Nav/Nav';
 import { Layout } from 'antd';
 import { Card, Modal } from 'antd';
 import { connect } from "react-redux";
-import { readAllDishes } from "../../Redux/Reducers/DishesReducer";
-import { getAllDishes } from "../../Redux/Actions/DishesActions";
+import { readAllDishes, readAllCategories } from "../../Redux/Reducers/DishesReducer";
+import { getAllDishes, getAllCategories } from "../../Redux/Actions/DishesActions";
 
 
 const {Meta} = Card;
@@ -19,10 +19,23 @@ const gridStyle = {
 };
 const { Header, Footer, Sider, Content } = Layout;
 
-const DishesGrid = ({dishes, getAllDishes}) => {
+const DishesGrid = ({dishes, getAllDishes, getAllCategories, categories}) => {
 
   const [loading,setLoading] = useState(false);
   const [showDishForm,setShowDishForm] = useState(false);
+
+
+  const recoverCategories = useCallback(async()=>{
+    const dataCategories = await Http.get("/api/dishes/allCategories");
+
+    dataCategories.unshift({
+      id:"add",
+      nombre: "Añadir categoría"
+    });
+    getAllCategories(dataCategories);
+    
+  },[]);
+
 
   const replenishDishes = useCallback(async () => {
     const dataSource = await Http.get(
@@ -47,6 +60,7 @@ const DishesGrid = ({dishes, getAllDishes}) => {
 
   useEffect(()=>{
     replenishDishes();
+    recoverCategories();
   },[])
 
   return (
@@ -69,7 +83,8 @@ const DishesGrid = ({dishes, getAllDishes}) => {
       className="platos"
       key={dish.id}
       style={{ width: 240 }}
-      cover={<img alt="example" src={dish.icon} />}
+      cover={<img alt="example" src={dish.icon} 
+      />}
     >
       <Meta title={dish.nombre} description={dish.descripcion} />
     </Card>)
@@ -97,10 +112,11 @@ const DishesGrid = ({dishes, getAllDishes}) => {
 };
 
 const mapStateToProps = (state) => {
-  return { dishes: readAllDishes(state)};
+  return { dishes: readAllDishes(state), categories: readAllCategories(state)};
 };
 
 export default connect(mapStateToProps, {
-  getAllDishes
+  getAllDishes,
+  getAllCategories
 })(DishesGrid);
 
