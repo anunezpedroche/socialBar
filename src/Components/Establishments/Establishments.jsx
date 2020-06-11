@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import "./Establishments.css";
 // Antd
-import { Card, Modal } from 'antd';
+import { Card, Modal, Select } from 'antd';
 
 import { connect } from "react-redux";
 import { readAllEstablishments, readEstablishment} from "../../Redux/Reducers/EstablishmentReducer";
@@ -11,23 +11,35 @@ import {
 } from "../../Redux/Actions/EstablishmentActions";
 
 import TableForm from '../TableForm/TableForm';
+
+const {Option} = Select;
+
 const Establishments = ({establishment}) => {
 
   const [showTableForm,setShowTableForm] = useState(false);
-  
+  const [idCard,setIdCard] = useState();
+  const [idTable,setIdTable] = useState();
   const gridStyle = {
     width: '25%',
     textAlign: 'center',
   };
 
+
   return (
     <div className="establishmentWorkspace">
 
 
-    <Card title={establishment.nombre}>
+    <Card title={establishment.nombre}>    
+    
+      <Select defaultValue={1} style={{ width: 120 }} onChange={(e)=>{setIdCard(e)}}>
+      {establishment.cartas.map((carta)=>{return(
+        <Option value={carta.id}>{carta.nombre}</Option>
+      )})}
+      </Select>
+
       {establishment.mesas.map((mesa)=>{
 return(
-        <Card.Grid key={mesa.id.toString()} onClick={()=>{setShowTableForm(!showTableForm)}} style={gridStyle}>Mesa {mesa.id} </Card.Grid>
+        <Card.Grid key={mesa.id.toString()} onClick={()=>{setIdTable(mesa.id);setShowTableForm(!showTableForm);}} style={gridStyle}>Mesa {mesa.id} </Card.Grid>
 )
       })}
                   <Modal
@@ -44,7 +56,7 @@ return(
           }}
           width={1000}
         >
-          <TableForm/>
+          <TableForm idCard={idCard} idTable={idTable}/>
         </Modal>
     </Card>
     </div>

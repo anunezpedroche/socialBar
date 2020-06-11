@@ -24,9 +24,18 @@ exports.allEstablishments = async (req, res) => {
     
     const [mesas] = await connection.execute("SELECT id, estado FROM `Mesas` WHERE id_local=?",[establishment.id]);
 
+    const [
+      cards,
+    ]
+      = await connection.execute(
+      "SELECT * FROM `Cartas` cards WHERE cards.id_local= ?",
+      [establishment.id]
+    );
+
     return {
       ...establishment,
-      mesas: mesas
+      mesas: mesas,
+      cartas: cards
     }
   })).then((resp) => {
 

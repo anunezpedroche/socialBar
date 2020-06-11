@@ -1,11 +1,16 @@
 import React from "react";
 import './TableForm.css';
+import  QRCode from 'qrcode.react';
 
-const TableForm = ({})=>{
+const TableForm = ({idTable,idCard})=>{
+
+    console.log(idTable,idCard);
 
     return(
         <div>
-            Hola
+           
+            <QRCode value={`http://localhost.es/CardFromTable/${idTable}/${idCard}`}/>
+        
         </div>
     )
 }
