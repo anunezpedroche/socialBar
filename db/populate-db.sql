@@ -137,26 +137,26 @@ CREATE TABLE PlatosCarta (
 */
 
 
-INSERT INTO PlatosCarta VALUES(1,1,1);
-INSERT INTO PlatosCarta VALUES(1,2,1);
-INSERT INTO PlatosCarta VALUES(1,3,1);
-INSERT INTO PlatosCarta VALUES(1,4,1);
-INSERT INTO PlatosCarta VALUES(1,5,1);
-INSERT INTO PlatosCarta VALUES(1,6,1);
-INSERT INTO PlatosCarta VALUES(1,7,1);
-INSERT INTO PlatosCarta VALUES(1,8,1);
-INSERT INTO PlatosCarta VALUES(1,9,1);
-INSERT INTO PlatosCarta VALUES(1,10,1);
-INSERT INTO PlatosCarta VALUES(2,1,1);
-INSERT INTO PlatosCarta VALUES(2,2,1);
-INSERT INTO PlatosCarta VALUES(2,3,1);
-INSERT INTO PlatosCarta VALUES(2,4,1);
-INSERT INTO PlatosCarta VALUES(2,5,1);
-INSERT INTO PlatosCarta VALUES(2,6,1);
-INSERT INTO PlatosCarta VALUES(2,7,1);
-INSERT INTO PlatosCarta VALUES(2,8,1);
-INSERT INTO PlatosCarta VALUES(2,9,1);
-INSERT INTO PlatosCarta VALUES(2,10,1);
+INSERT INTO PlatosCarta VALUES(1,1);
+INSERT INTO PlatosCarta VALUES(1,2);
+INSERT INTO PlatosCarta VALUES(1,3);
+INSERT INTO PlatosCarta VALUES(1,4);
+INSERT INTO PlatosCarta VALUES(1,5);
+INSERT INTO PlatosCarta VALUES(1,6);
+INSERT INTO PlatosCarta VALUES(1,7);
+INSERT INTO PlatosCarta VALUES(1,8);
+INSERT INTO PlatosCarta VALUES(1,9);
+INSERT INTO PlatosCarta VALUES(1,10);
+INSERT INTO PlatosCarta VALUES(2,1);
+INSERT INTO PlatosCarta VALUES(2,2);
+INSERT INTO PlatosCarta VALUES(2,3);
+INSERT INTO PlatosCarta VALUES(2,4);
+INSERT INTO PlatosCarta VALUES(2,5);
+INSERT INTO PlatosCarta VALUES(2,6);
+INSERT INTO PlatosCarta VALUES(2,7);
+INSERT INTO PlatosCarta VALUES(2,8);
+INSERT INTO PlatosCarta VALUES(2,9);
+INSERT INTO PlatosCarta VALUES(2,10);
 
 INSERT INTO PlatosPersonal VALUES(1,1);
 INSERT INTO PlatosPersonal VALUES(2,1);
@@ -171,8 +171,8 @@ CREATE TABLE  Platos (
 );
 */
 
-INSERT INTO Platos VALUES(NULL, 'Bravas', 'Patas bravas con alioli y salsa picante', 3.50, 'bravas.png');
-INSERT INTO Platos VALUES(NULL, 'Calamares', 'Calamares del mar cantábrico', 4.50, 'calamares.png');
+INSERT INTO Platos VALUES(NULL, 'Bravas', 'Patas bravas con alioli y salsa picante', 3.50, 'bravas.png',1);
+INSERT INTO Platos VALUES(NULL, 'Calamares', 'Calamares del mar cantábrico', 4.50, 'calamares.png',1);
 
 
 /*

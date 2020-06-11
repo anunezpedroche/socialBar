@@ -29,7 +29,7 @@ exports.createTable = async (req,res) => {
 
 exports.cardFromTable = async (req,res) => {
   const connection = await model.getConnection();
-  console.log(req.params.idTable);
+
   const {idTable, idCard } = req.params;  
 
       const [

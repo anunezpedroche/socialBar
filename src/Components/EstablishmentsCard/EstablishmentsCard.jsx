@@ -18,7 +18,7 @@ import { getAllDishes } from "../../Redux/Actions/DishesActions";
 const { Meta } = Card;
 // Antd
 
-const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establishment, selectedCard,getAllDishes}) => {
+const EstablishmentsCard = ({ card, cards, getAllCards, selectedEstablishment, establishment, selectedCard,getAllDishes}) => {
 
   const [loading, setLoading] = useState(false);
   const [showEditCardForm, setShowEditCardForm] = useState(false);
@@ -45,6 +45,15 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
     replenishCards();
     replenishDishes();
   }, [establishment]);
+
+  const saveDishes = (async()=>{
+
+    setShowEditCardForm(!showEditCardForm);
+    const dataSend = await Http.post(card,'/api/cards/dishesToCard');
+
+
+
+  });
 
   return (
     <div className="establishmentWorkspace">
@@ -84,10 +93,10 @@ const EstablishmentsCard = ({ cards, getAllCards, selectedEstablishment, establi
             <Modal
           title="Añadir platos a la carta"
           visible={showEditCardForm}
-          okText="Salir"
+          okText="Guardar y salir"
           destroyOnClose={true}
           onOk={() => {
-            setShowEditCardForm(!showEditCardForm);
+            saveDishes();
           }}
           cancelText="Cancelar"
           onCancel={() => {

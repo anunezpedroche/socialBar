@@ -91,9 +91,26 @@ exports.updateProject = async (req, res) => {
   res.status(200).send(alertMessage);
 };
 */
+
+exports.dishesToCard = async(req,res) => {
+
+  const card = req.body;
+
+  card.platos.map((plato)=>{
+
+    const [ tag ] = connection.execute("SELECT id FROM Categorias WHERE nombre=?",plato.id); 
+    console.log(tag);
+  });
+
+  //const [ tag ] = connection.execute("SELECT id FROM Categorias WHERE nombre=?"); 
+
+  //const [dishes] = connection.execute("INSERT INTO")
+  res.send({message:"OK",status:200});
+
+}
+
 exports.allCardsEstablishmentsId = async (req, res) => {
   const connection = await model.getConnection();
-  console.log(req.params.id);
  
   const [
     cards,
@@ -109,7 +126,7 @@ exports.allCardsEstablishmentsId = async (req, res) => {
       const [
         platos
       ] = await connection.execute(
-        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = pltsCrt.id_categoria WHERE pltsCrt.id_carta = ?"
+        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = plts.id_categoria WHERE pltsCrt.id_carta = ?"
         , [row.id]
       );
 

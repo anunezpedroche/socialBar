@@ -1,4 +1,4 @@
-const HOST = "http://217.182.168.229:3000"
+const HOST = "http://localhost:3000"
 
 // Credentials: 'include' nos permite reenviar automaticamente 
 // la cookie httponly de manera segura entre cliente-servidor

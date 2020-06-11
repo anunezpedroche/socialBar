@@ -108,7 +108,7 @@ exports.allDishes = async (req, res) => {
     dishes
   ]
     = await connection.execute(
-    "SELECT * FROM `Platos` plts INNER JOIN `PlatosPersonal` pltsprs ON pltsprs.id_plato = plts.id WHERE pltsprs.id_personal = ?",
+    "SELECT plts.*,ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosPersonal` pltsprs ON pltsprs.id_plato = plts.id INNER JOIN `Categorias` ctg ON plts.id_categoria = ctg.id WHERE pltsprs.id_personal = ?",
     [req.user.id]
   );
       console.log(dishes);

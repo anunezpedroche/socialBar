@@ -75,7 +75,6 @@ CREATE TABLE  Cartas (
 CREATE TABLE PlatosCarta (
 	id_plato INT NOT NULL,
 	id_carta INT NOT NULL,
-	id_categoria INT,
 	PRIMARY KEY (id_plato , id_carta)
 );
 
@@ -85,7 +84,8 @@ CREATE TABLE  Platos (
 	titulo VARCHAR(255),
 	descripcion TEXT,
 	precio DECIMAL,
-	imagen VARCHAR(50)
+	imagen VARCHAR(50),
+	id_categoria INT
 );
 
 CREATE TABLE Categorias (
