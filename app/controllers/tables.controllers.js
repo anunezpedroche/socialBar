@@ -17,7 +17,7 @@ exports.allTables = async (req, res) => {
       "SELECT * FROM `Locales` INNER JOIN `LocalesPerfilesPersonal` locPerfPers ON locPerfPers.id_local = `Locales`.id WHERE locPerfPers.id_personal = ?";
   }
 
-  const [rows] = await connection.execute(consulta, [req.user.id]);
+  const [establishments] = await connection.execute(consulta, [req.user.id]);
 
   connection.end();
   res.send(rows);

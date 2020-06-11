@@ -53,12 +53,12 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
             <Content
               style={{backgroundColor:'darkslateblue'}}
             >
-              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id.toString()}>
+              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id.toString()} onTabClick={(activeKey)=>{selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 
                   return (
-                  <TabPane tab={establish.nombre} key={establish.id} >
-                    <Establishments establishment={establish}/>
+                  <TabPane tab={establish.nombre} key={establish.id}>
+                    <Establishments/>
                   </TabPane>
                   );
                 })}

@@ -5,6 +5,7 @@ const {
 } = require("./users.controllers");
 
 exports.allEstablishments = async (req, res) => {
+
   const connection = await model.getConnection();
   
   let consulta;
@@ -19,6 +20,18 @@ exports.allEstablishments = async (req, res) => {
 
   const [rows] = await connection.execute(consulta, [req.user.id]);
 
-  connection.end();
-  res.send(rows);
+  const establishments = Promise.all(rows.map(async (establishment)=>{
+    
+    const [mesas] = await connection.execute("SELECT id, estado FROM `Mesas` WHERE id_local=?",[establishment.id]);
+
+    return {
+      ...establishment,
+      mesas: mesas
+    }
+  })).then((resp) => {
+
+    connection.end();
+    res.send(resp);
+  });
+
 };
