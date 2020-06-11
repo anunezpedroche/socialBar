@@ -1,9 +1,9 @@
 import React, {useState, useCallback} from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 import Http from "../../Helpers/Http";
 import { createDish } from "../../Redux/Actions/DishesActions";
-
+import { readAllCategories } from "../../Redux/Reducers/DishesReducer";
 
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -11,7 +11,9 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import "./DishForm.css";
 
-const DishForm = ({createDish}) => {
+const Option = Select;
+
+const DishForm = ({createDish, categories}) => {
 
 
   const [upImg, setUpImg] = useState();
@@ -149,7 +151,13 @@ const DishForm = ({createDish}) => {
         onChange={c => setCrop(c)}
         onComplete={makeClientCrop}
       />
-
+      <Form.Item name={['dish','categoria']} label="Categoría">
+        <Select defaultValue={1} style={{ width: 120 }}>
+        {categories.map((carta)=>{return(
+          <Option value={carta.id}>{carta.nombre}</Option>
+        )})}
+        </Select>
+      </Form.Item>
 
       <Form.Item name={['dish', 'imagen']} label="Imagen"
       rules={[
@@ -177,5 +185,9 @@ const DishForm = ({createDish}) => {
 };
 
 
-export default connect(null,{createDish})(DishForm);
+const mapStateToProps = (state) => {
+  return {categories: readAllCategories(state)};
+};
+
+export default connect(mapStateToProps, {})(DishForm);
 
