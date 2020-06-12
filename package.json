@@ -6,7 +6,7 @@
   "scripts": {
     "test": "react-scripts test",
     "dev": "nodemon server.js",
-    "start": "react-scripts start",
+    "start": "HOST='tacumba.es' PORT=80 react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
@@ -15,7 +15,6 @@
     "url": "git+https://github.com/anunezpedroche/socialBar.git"
   },
   "keywords": [],
-  "proxy": "http://localhost:3001",
   "author": "Adrián Núñez Pedroche",
   "license": "ISC",
   "bugs": {
