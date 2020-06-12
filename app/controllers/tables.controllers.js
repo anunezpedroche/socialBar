@@ -35,7 +35,7 @@ exports.cardFromTable = async (req,res) => {
       const [
         platos
       ] = await connection.execute(
-        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = pltsCrt.id_categoria WHERE pltsCrt.id_carta = ?"
+        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = plts.id_categoria WHERE pltsCrt.id_carta = ?"
         , [idCard]
       );
 

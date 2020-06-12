@@ -141,7 +141,7 @@ exports.createDish = async (req, res) => {
   //console.log(dish);
 
   let imageName = "default.png";
-  console.log("hola");
+
   if (req.body.dish.imagen) {
     var base64Data = req.body.dish.imagen.replace(
       /^data:image\/jpeg;base64,/,

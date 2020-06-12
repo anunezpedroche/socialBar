@@ -15,6 +15,7 @@
     "url": "git+https://github.com/anunezpedroche/socialBar.git"
   },
   "keywords": [],
+  "proxy": "http://localhost:3001",
   "author": "Adrián Núñez Pedroche",
   "license": "ISC",
   "bugs": {

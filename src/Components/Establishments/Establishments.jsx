@@ -33,7 +33,7 @@ const Establishments = ({establishment}) => {
     
       <Select defaultValue={1} style={{ width: 120 }} onChange={(e)=>{setIdCard(e)}}>
       {establishment.cartas.map((carta)=>{return(
-        <Option value={carta.id}>{carta.nombre}</Option>
+        <Option value={carta.id} key={carta.id}>{carta.nombre}</Option>
       )})}
       </Select>
 
@@ -43,18 +43,17 @@ return(
 )
       })}
                   <Modal
-          title="Añadir platos a la carta"
+          title={"QR de mesa "+idTable}
           visible={showTableForm}
-          okText="Guardar y salir"
           destroyOnClose={true}
           onOk={() => {
-            console.log("hola")
+            
+            setShowTableForm(!showTableForm);
           }}
-          cancelText="Cancelar"
           onCancel={() => {
             setShowTableForm(!showTableForm);
           }}
-          width={1000}
+          width={175}
         >
           <TableForm idCard={idCard} idTable={idTable}/>
         </Modal>

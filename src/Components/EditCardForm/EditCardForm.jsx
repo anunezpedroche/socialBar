@@ -1,6 +1,6 @@
 //antd
 import difference from "lodash/difference";
-import { Transfer, Switch, Table, Tag } from 'antd';
+import { Transfer, Table, Tag } from 'antd';
 //React
 import React, { useState } from "react";
 
@@ -8,10 +8,6 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { readCard } from "../../Redux/Reducers/CardsReducer";
 import { readAllDishes } from "../../Redux/Reducers/DishesReducer"; 
-/*import { readAllUsers } from "../../Redux/Reducers/UserReducer";
-import { readAllTechs } from "../../Redux/Reducers/TechReducer";
-import { readProject } from "../../Redux/Reducers/ProjectReducer";
-*/
 import { editCard } from "../../Redux/Actions/CardsActions";
 
 //Esto es la tabla y cómo se rellena

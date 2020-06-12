@@ -15,7 +15,7 @@ const Profile = ({ user, logOutUser, collapsed }) => {
 
     const [ logginOut, setLogginOut ] = useState(false);
 
-    const { nombre, apellidos, nickname, avatar } = user;
+    const { nombre, apellidos, nickname } = user;
 
     const data = [
         `${nombre} ${apellidos}`,

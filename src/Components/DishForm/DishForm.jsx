@@ -13,7 +13,7 @@ import "./DishForm.css";
 
 const Option = Select;
 
-const DishForm = ({createDish, categories}) => {
+const DishForm = ({categories}) => {
 
 
   const [upImg, setUpImg] = useState();

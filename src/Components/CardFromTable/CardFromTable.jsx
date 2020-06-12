@@ -12,8 +12,6 @@ import { connect } from "react-redux";
 import { readAllDishes } from "../../Redux/Reducers/DishesReducer";
 import { getAllDishes } from "../../Redux/Actions/DishesActions";
 
-const { Header, Footer, Sider, Content } = Layout;
-
 const CardFromTable = ({dishes,getAllDishes}) => {
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
@@ -23,10 +21,11 @@ const CardFromTable = ({dishes,getAllDishes}) => {
     const recoverCard = useCallback(async ()=>{
       const dataSource = await Http.getCard(`/api/tables/cardFromTable/${idTable}/${idCard}`);
       getAllDishes(dataSource);
+      console.log(dataSource);
       dataSource.map(item =>{
         const icon = require(`../../img/dishes/${item.imagen}`);
         return item.icon = icon;
-
+        
       });
       
     setLoading(true);

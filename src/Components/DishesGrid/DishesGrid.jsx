@@ -2,10 +2,7 @@ import React,{useCallback, useEffect, useState} from "react";
 import "./DishesGrid.css";
 import Http from '../../Helpers/Http';
 import DishForm from '../DishForm/DishForm';
-// Antd
-import { Carousel } from "antd";
-import Nav from '../Nav/Nav';
-import { Layout } from 'antd';
+
 import { Card, Modal } from 'antd';
 import { connect } from "react-redux";
 import { readAllDishes, readAllCategories } from "../../Redux/Reducers/DishesReducer";
@@ -17,7 +14,6 @@ const gridStyle = {
   width: '25%',
   textAlign: 'center',
 };
-const { Header, Footer, Sider, Content } = Layout;
 
 const DishesGrid = ({dishes, getAllDishes, getAllCategories, categories}) => {
 

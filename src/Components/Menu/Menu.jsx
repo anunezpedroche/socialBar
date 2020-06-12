@@ -13,7 +13,7 @@ import {
   selectedEstablishment,
 } from "../../Redux/Actions/EstablishmentActions";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 const { TabPane } = Tabs;
 
 const Menu = ({establishments, getAllEstablishments, selectedEstablishment,establishment}) => {
