@@ -152,11 +152,11 @@ const DishForm = ({categories}) => {
         onComplete={makeClientCrop}
       />
       <Form.Item name={['dish','categoria']} label="Categoría">
-        <Select defaultValue={1} style={{ width: 120 }}>
+        <select defaultValue={1} style={{ width: 120 }}>
         {categories.map((carta)=>{return(
-          <Option value={carta.id}>{carta.nombre}</Option>
+          <option value={carta.id}>{carta.nombre}</option>
         )})}
-        </Select>
+        </select>
       </Form.Item>
 
       <Form.Item name={['dish', 'imagen']} label="Imagen"

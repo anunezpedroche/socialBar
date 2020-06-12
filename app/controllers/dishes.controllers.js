@@ -98,7 +98,7 @@ exports.allCategories = async (req,res) => {
 
   const [ categories ] = await connection.query("SELECT * FROM Categorias");
 
-  console.log(categories);
+  //console.log(categories);
 
   res.send(categories);
 
@@ -124,7 +124,7 @@ exports.allDishes = async (req, res) => {
     "SELECT plts.*,ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosPersonal` pltsprs ON pltsprs.id_plato = plts.id INNER JOIN `Categorias` ctg ON plts.id_categoria = ctg.id WHERE pltsprs.id_personal = ?",
     [req.user.id]
   );
-      console.log(dishes);
+      //console.log(dishes);
     connection.end();
     res.send(dishes);
 
@@ -134,11 +134,11 @@ exports.createDish = async (req, res) => {
 
   const connection = await model.getConnection();
   const dish = parseDish(req.body.dish);
-
-  console.log(req);
+  //console.log(req.body);
+  //console.log(req);
 
   dish.creador = req.user.id ? req.user.id : 1;
-  //console.log(dish);
+  console.log(dish);
 
   let imageName = "default.png";
 
@@ -159,14 +159,14 @@ exports.createDish = async (req, res) => {
       }
     );
   }
-  console.log("adios");
+  console.log(imageName);
   const [
     rows,
   ] = await connection.execute(
-    "INSERT INTO `Platos` VALUES (NULL,?,?,?,?)",
-    [dish.titulo, dish.descripcion,dish.precio, imageName]
+    "INSERT INTO `Platos` VALUES (NULL,?,?,?,?,?)",
+    [dish.titulo, dish.descripcion,dish.precio, imageName,parseInt(dish.categoria)]
   );
-
+    console.log("nani?!");
   const [ platosPersonal ] = await connection.execute("INSERT INTO `PlatosPersonal` VALUES(?,?)",[rows.insertId,dish.creador]);
   connection.end();
 
@@ -184,5 +184,6 @@ const parseDish = (results) => {
     precio: parseFloat(results.precio),
     imagen: results.imagen,
     creador: results.creador,
+    categoria: parseInt(results.categoria)
   };
 };

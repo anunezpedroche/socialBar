@@ -12,7 +12,14 @@ import { connect } from "react-redux";
 import { readAllDishes } from "../../Redux/Reducers/DishesReducer";
 import { getAllDishes } from "../../Redux/Actions/DishesActions";
 
+//WebSocket
+import socketIOClient from "socket.io-client";
+
+const ENDPOINT = 'http://localhost:4000';
+
+
 const CardFromTable = ({dishes,getAllDishes}) => {
+  const [ response, setResponse ] = useState("");
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
 
@@ -32,22 +39,26 @@ const CardFromTable = ({dishes,getAllDishes}) => {
     },[]);
 
     useEffect(()=>{
-      recoverCard();
+
+const socket = socketIOClient("http://localhost:4000");
+      socket.on('news', (data)=>{
+        console.log(data);
+        socket.emit('my other event', {my:'data'});
+        setResponse(data);
+        });
+      console.log(response);
+      //recoverCard();
+
+    },[]);
+
+    useEffect(()=>{
+
     },[])
 
     return (
-    <React.Fragment>
-      <Carousel effect="fade" autoplay autoplaySpeed="10"> 
-        
-        {(loading)?dishes.map((dish)=>{
-          return(
-                <div>
-                  <img alt="example" src={dish.icon} style={{maxHeight:300}}/>
-                </div>
-        )}):""}
-
-      </Carousel>
-    </React.Fragment>
+      <p>
+        It's {response.hello}
+      </p>
   );
 };
 

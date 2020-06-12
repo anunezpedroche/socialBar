@@ -9,7 +9,7 @@ const TableForm = ({idTable,idCard})=>{
     return(
         <div>
            
-            <QRCode value={`http://tacumba.es/CardFromTable/${idTable}/${idCard}`}/>
+            <QRCode value={`http://www.tacumba.es/CardFromTable/${idTable}/${idCard}`}/>
         
         </div>
     )
