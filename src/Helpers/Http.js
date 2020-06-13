@@ -17,6 +17,7 @@ export default class Http {
     }
 
     static post = async (body, url) => {
+        console.log(body);
         const request = this.getRequest(body, url, "POST")
         const res = await fetch(request)
         if (res.status !== 200){

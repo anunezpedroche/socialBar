@@ -89,7 +89,6 @@ router.get(
 
 router.post(
   "/createUser",
-  passport.authenticate("jwt", { session: false }),
   createUser
 );
 

@@ -31,20 +31,48 @@ exports.findById = async (id) => {
 };
 
 exports.createUser = async (req, res) => {
+
+
+
+  let imageName = "default.png";
+
+  if (req.body.user.avatar) {
+    var base64Data = req.body.user.avatar.replace(
+      /^data:image\/jpeg;base64,/,
+      ""
+    );
+
+    imageName =
+      req.body.user.nombre+ "_" + Date.now() + "_" +  ".jpeg";
+    require("fs").writeFile(
+      `./src/img/dishes/${imageName}`,
+      base64Data,
+      "base64",
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
+
+ req.body.user.password = model.getEnCrypted(req.body.user.password);
+
+ console.log(req.body.user.password);
+
+
+
+  console.log(req.body.user);
   const connection = await model.getConnection();
   const user = parseUser(req.body.user);
   const [
     rows,
   ] = await connection.execute(
-    "INSERT INTO `Personal` VALUES (NULL,?,?,?,?,?,?,?)",
+    "INSERT INTO `Personal` VALUES (NULL,?,?,?,?,?)",
     [
       user.nickname,
       user.password,
-      user.email,
       user.nombre,
       user.apellidos,
-      user.admin,
-      "default.png",
+      imageName,
     ]
   );
   connection.end();

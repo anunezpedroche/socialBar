@@ -1,5 +1,5 @@
 .login {
-    position: absolute;
+   /* position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -13,18 +13,21 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);*/
 }
 
 .errorMsg{
     margin-bottom: 10px;
 }
-
-.title {
+.header{
+    padding-top: 15px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: right;
+    align-items: right;
+}
+.title {
+
 }
 
 h3 {
@@ -36,14 +39,32 @@ h3 {
     font-size: 2em;
     margin-bottom: 10px
 }
-
+.inputUser{
+    width: 150px;
+    height: 25px;
+}
 .inputPassword {
-    margin-top: 30px;
+    width: 150px;
+    margin-left: 10px;
+    height: 25px;
+   
 }
 
 .btnLogin {
+    margin-left: 10px;
     background-color: #1FFF00;
     color: white;
     border: none;
-    margin-top: 30px;
+    
+}
+
+.contentLogin{
+    height: 100%;
+}
+
+.btnRegister{
+    margin-left: 10px;
+    background-color: #026939;
+    color: white;
+    border: none;
 }

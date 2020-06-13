@@ -48,7 +48,7 @@ function App({ user, logUser }) {
 
   return !loading ? (
     <Router>
-      <div className="App">
+      <div>
     
         <Switch>
 
