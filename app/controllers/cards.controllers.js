@@ -29,6 +29,59 @@ exports.dishesToCard = async(req,res) => {
 
 }
 
+exports.createCard = async (req,res) =>{
+
+  let imageName = "default.png";
+
+  if (req.body.card.imagen) {
+    var base64Data = req.body.card.imagen.replace(
+      /^data:image\/jpeg;base64,/,
+      ""
+    );
+
+    imageName =
+      req.body.card.nombre+ "_" + Date.now() + "_" +  ".jpeg";
+    require("fs").writeFile(
+      `./src/img/cards/${imageName}`,
+      base64Data,
+      "base64",
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
+
+/*
+CREATE TABLE  Cartas ( 
+	id INT NOT NULL AUTO_INCREMENT ,
+    id_local INT NOT NULL,
+	nombre VARCHAR(255),
+	descripcion VARCHAR(255),
+	imagen VARCHAR(255) DEFAULT 'card_default.png',
+    PRIMARY KEY (id,id_local)
+);
+*/
+
+  const connection = await model.getConnection();
+
+  const card = parseCard(req.body.card);
+
+  console.log(card);
+
+  const [rows] = await connection.execute("INSERT INTO `Cartas` VALUES(NULL,?,?,?,?)",[card.local,card.nombre,card.descripcion,imageName]);
+
+  console.log("Usuario "+req.user.id);
+  console.log(rows);
+
+
+//  const [rowsProfiles] = await connection.execute("INSERT INTO `LocalesPerfilesPersonal` VALUES(?,?,?)",[req.user.id,2,rows.insertId]);
+
+
+  connection.end();
+  res.send({message:'ok'});
+
+}
+
 exports.allCardsEstablishmentsId = async (req, res) => {
   const connection = await model.getConnection();
  
@@ -64,3 +117,15 @@ exports.allCardsEstablishmentsId = async (req, res) => {
   });
 
 };
+
+
+const parseCard = (results) =>{
+  console.log(results);
+  return{
+    id:results.id,
+    nombre:results.nombre,
+    descripcion:results.descripcion,
+    local: results.establecimiento,
+    imagen: results.imagen
+  }
+}

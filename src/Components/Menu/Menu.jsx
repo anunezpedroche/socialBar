@@ -2,6 +2,7 @@ import React, {useCallback,useEffect,useState} from "react";
 import "./Menu.css";
 // Antd
 import EstablishmentsCard from "../EstablishmentsCard/EstablishmentsCard";
+import CardsForm from "../CardsForm/CardsForm";
 import Nav from '../Nav/Nav';
 import { Layout } from 'antd';
 import Http from "../../Helpers/Http";
@@ -68,7 +69,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
                     (establish.add===1)?
                       <TabPane tab={establish.nombre} key={establish.id}>
                         {console.log("entro aqui")}
-                        Añadir local
+                        <CardsForm/>
                       </TabPane>
                       
                     :
