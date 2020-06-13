@@ -45,7 +45,7 @@ exports.createUser = async (req, res) => {
     imageName =
       req.body.user.nombre+ "_" + Date.now() + "_" +  ".jpeg";
     require("fs").writeFile(
-      `./src/img/dishes/${imageName}`,
+      `./src/img/usr/${imageName}`,
       base64Data,
       "base64",
       function (err) {

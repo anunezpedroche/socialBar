@@ -1,6 +1,7 @@
 import React, {useCallback,useEffect,useState} from "react";
 import "./Locales.css";
 // Antd
+import EstablishmentForm from "../EstablishmentForm/EstablishmentForm";
 import Establishments from "../Establishments/Establishments";
 import Nav from '../Nav/Nav';
 import { Layout } from 'antd';
@@ -25,22 +26,29 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
         await dataSource.map(async (est) =>{
           est.id = est.id.toString();
         });
-        
+
         dataSource.unshift({
           id: "0",
           nombre: "Añadir local",
           add : 1
         });
-
+        
         getAllEstablishments(dataSource);
-        selectedEstablishment(dataSource[1].id);
+        if(dataSource[1]){
+          selectedEstablishment(dataSource[1].id);
+        }else{
+          selectedEstablishment(dataSource[0].id);
+        }
+
+        
         setLoading(true);
     },[]);
 
     useEffect(()=>{
         replenishEstablishments();
-    },[])
+    },[loading])
 
+    
   return (
     <React.Fragment>
       {(loading)?
@@ -54,19 +62,19 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
               <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('1'):selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 
-                  console.log(establish);
                   return (
 
                     (establish.add===1)?
                       <TabPane tab={establish.nombre} key={establish.id}>
-                        {console.log("entro aqui")}
-                        Añadir local
+
+                        <EstablishmentForm/>
                       </TabPane>
                       
                     :
                   <TabPane tab={establish.nombre} key={establish.id}>
-                    {console.log("mejor entro aqui")}
-<Establishments/>                  </TabPane>
+
+                        <Establishments/>     
+                 </TabPane>
                   );
                 })}
                   

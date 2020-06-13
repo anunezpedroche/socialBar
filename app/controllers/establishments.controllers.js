@@ -4,6 +4,51 @@ const {
   parseUserExported: parseUser,
 } = require("./users.controllers");
 
+exports.createEstablishment = async(req,res) =>{
+
+  let imageName = "default.png";
+
+  if (req.body.establishment.imagen) {
+    var base64Data = req.body.establishment.imagen.replace(
+      /^data:image\/jpeg;base64,/,
+      ""
+    );
+
+    imageName =
+      req.body.establishment.nombre+ "_" + Date.now() + "_" +  ".jpeg";
+    require("fs").writeFile(
+      `./src/img/establishment/${imageName}`,
+      base64Data,
+      "base64",
+      function (err) {
+        console.log(err);
+      }
+    );
+  }
+
+
+
+  const connection = await model.getConnection();
+
+  const establishment = parseEstablishment(req.body.establishment);
+
+  console.log(imageName);
+
+  const [rows] = await connection.execute("INSERT INTO `Locales` VALUES(NULL,?,?,?)",[establishment.nombre,establishment.ubicacion,imageName]);
+
+  console.log("Usuario "+req.user.id);
+  console.log(rows);
+
+
+  const [rowsProfiles] = await connection.execute("INSERT INTO `LocalesPerfilesPersonal` VALUES(?,?,?)",[req.user.id,2,rows.insertId]);
+
+
+  connection.end();
+  res.send({message:'ok',id_local:rows.insertId,id_perfil:2,id_usuario:req.user.id});
+
+}
+
+
 exports.allEstablishments = async (req, res) => {
 
   const connection = await model.getConnection();
@@ -44,3 +89,13 @@ exports.allEstablishments = async (req, res) => {
   });
 
 };
+
+const parseEstablishment = (results) =>{
+  console.log(results);
+  return{
+    id:results.id,
+    nombre:results.nombre,
+    ubicacion:results.ubicacion,
+    imagen: results.imagen
+  }
+}
