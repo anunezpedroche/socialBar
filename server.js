@@ -4,11 +4,10 @@ const cors         = require("cors");
 const passport     = require('passport');
 const session      = require('express-session');
 const cookieParser = require('cookie-parser');
-
-const app = express();
-const server = require('http').createServer(app);
+const socketIO     = require('socket.io');
+const app          = express();
+//const server = require('http').createServer(app);
 //Creating server websocket
-const io = require('socket.io')(server);
 // Middleware for passport
 require('./config/passport');
 
@@ -38,10 +37,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 // WebSocket connection
 
-server.listen(4000, ()=> console.log('Listening webSocket on port 4000'));
+//server.listen(4000, ()=> console.log('Listening webSocket on port 4000'));
 
 let interval;
 
+function initSocket(server){
+    const io = socketIO(server);
+    const tableCtrl = require('./lib/socket.js')(io);
+    app.locals.tableCtrl = tableCtrl;
+}
+/*
 io.on('connection',(socket)=>{
     socket.emit('news',{hello:'world'});
     socket.on('my other event', (data)=>{
@@ -56,7 +61,7 @@ const getApiAndEmit = socket => {
     socket.emit("FromAPI", response);
 };
 
-
+*/
 
 // Paginas publicas (estaticas)
 app.use(express.static(path.join(__dirname, "public")));
@@ -75,3 +80,7 @@ app.use("/api/reports", require("./app/routes/reports.routes.js"));*/
 app.listen(port, () => {
     console.log(" * Servidor corriendo en: http://localhost:3000");
 });
+
+const server = app.listen(5000, ()=> console.log('Listening at port 5000'));
+
+initSocket(server);

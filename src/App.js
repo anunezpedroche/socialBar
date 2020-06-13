@@ -5,6 +5,7 @@ import Locales from './Components/Locales/Locales';
 import Menu from './Components/Menu/Menu';
 import Dishes from './Components/Dishes/Dishes';
 import CardFromTable from './Components/CardFromTable/CardFromTable';
+import WaiterController from './Components/WaiterController/WaiterController';
 import {
   BrowserRouter as Router,
   Switch,
@@ -60,6 +61,7 @@ function App({ user, logUser }) {
           {<PrivateRoute path="/Menu" component={Menu} exact/>}
           {<PrivateRoute path="/Dishes" component={Dishes} exact/>}
           {<Route path="/CardFromTable/:idTable/:idCard" component={CardFromTable}/>}
+          {<Route path="/WaiterController" component={WaiterController}/>}
           <Route path="/" ><Redirect to="/login" /></Route>
         </Switch>
         

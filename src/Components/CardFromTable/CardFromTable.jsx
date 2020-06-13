@@ -19,7 +19,7 @@ const ENDPOINT = 'http://localhost:4000';
 
 
 const CardFromTable = ({dishes,getAllDishes}) => {
-  const [ response, setResponse ] = useState("");
+  const [ response, setResponse ] = useState(false);
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
 
@@ -34,20 +34,20 @@ const CardFromTable = ({dishes,getAllDishes}) => {
         return item.icon = icon;
         
       });
-      
+      const socket = socketIOClient("http://localhost:5000");
+      socket.emit('joinTable', (dataSource));
+      socket.on('acceptedTable',({accepted})=>{
+        console.log(accepted);
+        setResponse(accepted.accepted);
+      })
     setLoading(true);
     },[]);
 
     useEffect(()=>{
 
-const socket = socketIOClient("http://localhost:4000");
-      socket.on('news', (data)=>{
-        console.log(data);
-        socket.emit('my other event', {my:'data'});
-        setResponse(data);
-        });
-      console.log(response);
-      //recoverCard();
+
+      //console.log(response);
+      recoverCard();
 
     },[]);
 
@@ -56,9 +56,9 @@ const socket = socketIOClient("http://localhost:4000");
     },[])
 
     return (
-      <p>
-        It's {response.hello}
-      </p>
+<React.Fragment>
+      {(response===true)? <p>{ dishes[0].titulo}</p> : <p> It's </p> }
+</React.Fragment>
   );
 };
 
