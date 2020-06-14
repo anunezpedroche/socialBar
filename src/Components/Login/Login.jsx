@@ -48,8 +48,11 @@ const Login = ({logUser}) => {
 
 
 <Layout>
-    <Header className="header">
-      
+    <Header className="headerParent">
+    <div className="logo">      <img style={{width:45}} src={require("../../img/beer.svg")}/> &nbsp;<p> Social Bar  </p> &nbsp; <img style={{width:45}} src={require("../../img/beer.svg")}/></div>
+    <div className="header">
+
+
       {
             (errorMsg)?
              <Alert
@@ -81,7 +84,7 @@ const Login = ({logUser}) => {
                 Regístrate
             </Button>
 
-
+            </div>
             <Modal
           title="Registro"
           visible={showRegisterForm}
@@ -96,6 +99,7 @@ const Login = ({logUser}) => {
           }}
           width={600}
         >
+            
             <Register/>
         </Modal>
 

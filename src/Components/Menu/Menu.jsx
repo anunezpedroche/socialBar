@@ -54,7 +54,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
     <React.Fragment>
       {(loading)?
             <Layout>
-            <Header style={{minHeight:'10vh'}}>header</Header>
+        <Header style={{minHeight:'10vh', color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} src={require("../../img/beer.svg")}/></Header>
             <Layout>
             <Nav selectedKey={3}/>
             <Content
@@ -63,7 +63,6 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
               <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('1'):selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 
-                  console.log(establish);
                   return (
 
                     (establish.add===1)?

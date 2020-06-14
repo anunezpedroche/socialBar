@@ -20,11 +20,24 @@
     margin-bottom: 10px;
 }
 .header{
+    display: flex;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    color: white;
+    font-size: 40px;
+    margin-right: auto;
+    
+}
+
+.headerParent{
     padding-top: 15px;
     display: flex;
     flex-direction: row;
     justify-content: right;
-    align-items: right;
 }
 .title {
 

@@ -118,6 +118,41 @@ exports.allCardsEstablishmentsId = async (req, res) => {
 
 };
 
+exports.cardFromId = async (req, res) => {
+  const connection = await model.getConnection();
+ 
+  const [
+    cards,
+  ]
+    = await connection.execute(
+    "SELECT * FROM `Cartas` cards WHERE cards.id= ?",
+    [req.params.id]
+  );
+  
+  const dishesCard = Promise.all(
+
+    cards.map(async (row) => {
+      const [
+        platos
+      ] = await connection.execute(
+        "SELECT plts.*, ctg.nombre AS categoria FROM `Platos` plts INNER JOIN `PlatosCarta` pltsCrt ON plts.id = pltsCrt.id_plato INNER JOIN Categorias ctg ON ctg.id = plts.id_categoria WHERE pltsCrt.id_carta = ?"
+        , [row.id]
+      );
+
+      return {
+        ...row,
+        platos: platos
+      }
+    }
+    )
+
+
+  ).then((resp) =>{
+    connection.end();
+    res.send(resp);
+  });
+
+};
 
 const parseCard = (results) =>{
   console.log(results);

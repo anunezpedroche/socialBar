@@ -4,12 +4,16 @@ import "./CardFromTable.css";
 
 import Http from "../../Helpers/Http";
 
+import CardPreview from "../CardPreview/CardPreview";
+import Delivery from "../Delivery/Delivery";
 // Antd
 import { Carousel } from "antd";
 import { Layout } from 'antd';
 
 import { connect } from "react-redux";
 import { readAllDishes } from "../../Redux/Reducers/DishesReducer";
+import { readCard, readAllCards } from "../../Redux/Reducers/CardsReducer";
+import { selectedCard, getAllCards } from "../../Redux/Actions/CardsActions";
 import { getAllDishes } from "../../Redux/Actions/DishesActions";
 
 //WebSocket
@@ -18,33 +22,32 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = 'http://localhost:4000';
 
 
-const CardFromTable = ({dishes,getAllDishes}) => {
+const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard}) => {
   const [ response, setResponse ] = useState(false);
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
 
     console.log(idCard,idTable);
 
+    const recoverCards = useCallback(async ()=>{
+      const dataCard = await Http.getCard(`/api/cards/cardsFromId/${idCard}`);
+      getAllCards(dataCard);
+      selectedCard(dataCard[0].id);
+    });
+
     const recoverCard = useCallback(async ()=>{
       const dataSource = await Http.getCard(`/api/tables/cardFromTable/${idTable}/${idCard}`);
       getAllDishes(dataSource);
-      console.log(dataSource);
-      dataSource.map(item =>{
-        const icon = require(`../../img/dishes/${item.imagen}`);
-        return item.icon = icon;
-        
-      });
+      
       const socket = socketIOClient("http://localhost:5000");
       socket.emit('joinTable', (dataSource));
       socket.on('acceptedTable',({accepted})=>{
-        console.log(accepted);
         setResponse(accepted.accepted);
       })
     setLoading(true);
     },[]);
 
     useEffect(()=>{
-
 
       //console.log(response);
       recoverCard();
@@ -53,20 +56,23 @@ const CardFromTable = ({dishes,getAllDishes}) => {
 
     useEffect(()=>{
 
+      recoverCards();
     },[])
 
     return (
 <React.Fragment>
-      {(response===true)? <p>{ dishes[0].titulo}</p> : <p> It's </p> }
+      {(response===true)? <p><Delivery/></p> : <CardPreview/>}
 </React.Fragment>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { dishes: readAllDishes(state)};
+  return { dishes: readAllDishes(state), card: readCard(state),cards:readAllCards(state)};
 };
 
 export default connect(mapStateToProps, {
-  getAllDishes
+  getAllDishes,
+  selectedCard,
+  getAllCards
 })(CardFromTable);
 

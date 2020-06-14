@@ -53,7 +53,7 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
     <React.Fragment>
       {(loading)?
             <Layout>
-            <Header style={{minHeight:'10vh'}}>header</Header>
+        <Header style={{minHeight:'10vh', color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} src={require("../../img/beer.svg")}/></Header>
             <Layout>
             <Nav selectedKey={2}/>
             <Content
