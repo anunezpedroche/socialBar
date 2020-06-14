@@ -5,7 +5,7 @@ import "./WaiterController.css";
 import Http from "../../Helpers/Http";
 
 // Antd
-import { Carousel } from "antd";
+import { Carousel,Button } from "antd";
 import { Layout } from 'antd';
 
 import { connect } from "react-redux";
@@ -15,7 +15,8 @@ import { getAllDishes } from "../../Redux/Actions/DishesActions";
 //WebSocket
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = 'http://localhost:5000';
+const PROD = 'http://www.tacumba.es:5000';
+const DEV = 'http://localhost:5000';
 
 
 const WaiterController = ({dishes,getAllDishes}) => {
@@ -26,30 +27,21 @@ const WaiterController = ({dishes,getAllDishes}) => {
     console.log(idCard,idTable);
 
     const recoverCard = useCallback(async ()=>{
-      const dataSource = await Http.getCard(`/api/tables/cardFromTable/${idTable}/${idCard}`);
-      getAllDishes(dataSource);
-      //console.log(dataSource);
-      dataSource.map(item =>{
-        const icon = require(`../../img/dishes/${item.imagen}`);
-        return item.icon = icon;
-        
-      });
-      const socket = socketIOClient("http://localhost:5000");
-      socket.emit('acceptTable',({accepted:true}));
-      /*socket.on('acceptedTable',({accepted})=>{
-        setResponse(accepted);
-      })*/
+      
+      const socket = socketIOClient(PROD);
+      socket.emit('acceptTable',({accepted:loading}));
       console.log(response);
-    setLoading(true);
-    },[]);
+
+    },[loading]);
 
     useEffect(()=>{
 
+ 
 
       //console.log(response);
       recoverCard();
 
-    },[]);
+    },[loading]);
 
     useEffect(()=>{
 
@@ -59,7 +51,7 @@ const WaiterController = ({dishes,getAllDishes}) => {
 <React.Fragment>
       {(response)? <p>{dishes[0].titulo}</p>:
       <p>
-        It's
+             <Button onClick={()=>{setLoading(!loading)}}> Aceptar mesas/Rechazar</Button>
       </p>
 }
 </React.Fragment>

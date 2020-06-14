@@ -19,8 +19,8 @@ import { getAllDishes } from "../../Redux/Actions/DishesActions";
 //WebSocket
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = 'http://localhost:4000';
-
+const PROD = 'http://www.tacumba.es:5000';
+const DEV = 'http://localhost:5000';
 
 const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard, getAllCards}) => {
   const [ response, setResponse ] = useState(false);
@@ -42,7 +42,7 @@ const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard, getAllCar
         item.cantidad = 1;
         return item}));
       
-      const socket = socketIOClient("http://localhost:5000");
+      const socket = socketIOClient(PROD);
       socket.emit('joinTable', (dataSource));
       socket.on('acceptedTable',({accepted})=>{
         setResponse(accepted.accepted);
