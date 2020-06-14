@@ -1,5 +1,6 @@
-const HOST = "http://localhost:3000";
-
+const DEV = "http://localhost:3000";
+const PROD = "http://www.tacumba.es:3000" || "http://271.182.168.229:3000" || "http://localhost:3000";
+const HOST = PROD;
 // Credentials: 'include' nos permite reenviar automaticamente 
 // la cookie httponly de manera segura entre cliente-servidor
 

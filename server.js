@@ -18,10 +18,11 @@ require('./config/passport');
 *  https://mikrotik.com/product/RB960PGS
 *   
 */  
-
+const dev = 'http://localhost:3001';
+const prod = 'http://www.tacumba.es';
 // Middlewares
 app.use(express.json({limit:'10mb'}));
-app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
+app.use(cors({credentials: true, origin: prod}));
 app.use(cookieParser());
 // Para enviar un FORM a traves de req. tal.
 // Para que solo puedas pasar archivos texto plano 
