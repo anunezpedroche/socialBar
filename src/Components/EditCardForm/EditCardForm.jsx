@@ -151,7 +151,9 @@ const EditCardForm = ({ users, techs, project, editCard, card, dishes}) => {
           showSearch={true}
           onChange={onChanged}
           filterOption={(inputValue, item) =>
-            item.title.indexOf(inputValue) !== -1 || item.tag.indexOf(inputValue) !== -1
+            {
+          
+              return item.titulo.indexOf(inputValue) !== -1 || item.categoria.indexOf(inputValue) !== -1}
           }
           leftColumns={leftTableColumns}
           rightColumns={rightTableColumns}

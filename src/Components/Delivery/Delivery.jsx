@@ -1,9 +1,10 @@
 //antd
 import difference from "lodash/difference";
-import { Transfer, Table, Tag } from 'antd';
+import { Transfer, Table, Tag, Badge } from 'antd';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 //React
 import React, { useState } from "react";
-
+import './Delivery.css';
 //Redux
 import { connect } from "react-redux";
 import { readCard } from "../../Redux/Reducers/CardsReducer";
@@ -12,8 +13,8 @@ import { editCard } from "../../Redux/Actions/CardsActions";
 
 //Esto es la tabla y cómo se rellena
 const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
-
-  <Transfer {...restProps} showSelectAll={false}>
+  
+  <Transfer {...restProps} className="tabla" showSelectAll={false}>
     {({
       direction,
       filteredItems,
@@ -45,6 +46,7 @@ const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
 
       return (
         <Table
+          className="tabla"
           rowSelection={rowSelection}
           columns={columns}
           dataSource={filteredItems}
@@ -52,6 +54,7 @@ const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
           style={{ pointerEvents: listDisabled ? "none" : null }}
           onRow={({ key, disabled: itemDisabled }) => ({
             onClick: () => {
+              
               if (itemDisabled || listDisabled) return;
               onItemSelect(key, !listSelectedKeys.includes(key));
             },
@@ -61,7 +64,9 @@ const TableTransfer = ({ leftColumns, rightColumns, ...restProps }) => (
     }}
   </Transfer>
 );
-
+const addDish = (e)=>{
+console.log(e);
+};
 //Contenido la tabla izquierda
 const leftTableColumns = [
   {
@@ -75,7 +80,7 @@ const leftTableColumns = [
   {
     dataIndex: 'categoria',
     title: 'Categoría',
-    render: tag => <Tag>{tag}</Tag>,
+    render: tag => <React.Fragment><Tag>{tag}</Tag> </React.Fragment>,
   }
 ];
 
@@ -90,37 +95,20 @@ const rightTableColumns = [
         title: "Precio",
       },
       {
-        dataIndex: 'categoria',
-        title: 'Categoría',
-        render: tag => <Tag>{tag}</Tag>,
+        dataIndex: 'cantidad',
+        title: 'Cantidad',
+        render: tag => <React.Fragment><MinusOutlined onClick={(e)=>{console.log(e)}}/> {tag} <PlusOutlined onClick={addDish}/></React.Fragment>,
       }
 ];
 
-const Delivery = ({ users, techs, project, editCard, card, dishes}) => {
-    console.log(card);
+const Delivery = ({ editCard, card, dishes}) => {
+
+
   const rightDishes = dishes.filter(dish => {
     return card.platos.map(pc => {return pc.id}).includes(dish.id)
   });
 
-  const rightDishesKey = rightDishes.map(dish => {return dish.key})
-
-
-  console.log(card);
-
-  const mockTags = ['cat', 'dog', 'bird'];
-
-    const mockData = [];
-    for (let i = 0; i < 20; i++) {
-    mockData.push({
-        key: i.toString(),
-        title: `content${i + 1}`,
-        description: `description of content${i + 1}`,
-        disabled: i % 4 === 0,
-        tag: mockTags[i % 3],
-    });
-    }
-    
-  
+  const rightDishesKey = rightDishes.map(dish => {return dish.id})
 
   const [state, setState] = useState({
     targetKeys: rightDishesKey,
@@ -133,8 +121,10 @@ const Delivery = ({ users, techs, project, editCard, card, dishes}) => {
   const onChanged = (nextTargetKeys) => {
     setState({ targetKeys: nextTargetKeys });
 
+    console.log(nextTargetKeys);
+
     card.platos=dishes.filter(dish => {
-      return nextTargetKeys.includes(dish.id.toString())
+      return nextTargetKeys.includes(dish.id)
     });
     
     editCard(card);
@@ -143,16 +133,22 @@ const Delivery = ({ users, techs, project, editCard, card, dishes}) => {
   console.log(dishes);
 
   return (
-    <div className="transferTableUsersTechs">
+    <div className="transferTableDishes">
+      <div className="titleCard"><img style={{width:50}} src={require("../../img/beer.svg")}/> {card.nombre} <img style={{width:50}} src={require("../../img/beer.svg")}/></div>
         <TableTransfer
           dataSource={dishes}
           targetKeys={targetKeys}
           disabled={false}
           showSearch={true}
           onChange={onChanged}
-          filterOption={(inputValue, item) =>
-            item.title.indexOf(inputValue) !== -1 || item.tag.indexOf(inputValue) !== -1
+          filterOption={(inputValue, item) => {
+          
+            return item.titulo.indexOf(inputValue) !== -1 || item.categoria.indexOf(inputValue) !== -1}
+            
           }
+          onClick = {(e)=>{
+            console.log(e);
+          }}
           leftColumns={leftTableColumns}
           rightColumns={rightTableColumns}
         />

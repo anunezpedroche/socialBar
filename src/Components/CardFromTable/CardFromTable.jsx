@@ -22,7 +22,7 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = 'http://localhost:4000';
 
 
-const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard}) => {
+const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard, getAllCards}) => {
   const [ response, setResponse ] = useState(false);
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
@@ -37,7 +37,10 @@ const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard}) => {
 
     const recoverCard = useCallback(async ()=>{
       const dataSource = await Http.getCard(`/api/tables/cardFromTable/${idTable}/${idCard}`);
-      getAllDishes(dataSource);
+      getAllDishes(dataSource.map(item =>{
+        item.key = item.id.toString();
+        item.cantidad = 1;
+        return item}));
       
       const socket = socketIOClient("http://localhost:5000");
       socket.emit('joinTable', (dataSource));

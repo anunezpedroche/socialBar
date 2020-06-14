@@ -1,0 +1,14 @@
+.tabla{
+    background-color: white;
+}
+
+.transferTableDishes{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.titleCard{
+    text-align: center;
+    font-size: 30px;
+}
