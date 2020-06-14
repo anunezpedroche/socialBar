@@ -12,7 +12,7 @@ const {
 } = require("../controllers/users.controllers");
 
 const optsCookie = {
-  expires: new Date(Date.now() + 3600000),
+  expires: new Date(Date.now() + 3600000000000),
   secure: false, // set to true if your using https
   httpOnly: true,
   sameSite: true
