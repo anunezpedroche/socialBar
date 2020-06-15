@@ -1,10 +1,9 @@
 
 import "./CardsForm.css";
 // Antd
-import { Layout } from 'antd';
 import React, {useState, useCallback} from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button } from 'antd';
 import Http from "../../Helpers/Http";
 import { createEstablishment, selectedEstablishment } from "../../Redux/Actions/EstablishmentActions";
 import { readAllEstablishments } from "../../Redux/Reducers/EstablishmentReducer";
@@ -12,8 +11,6 @@ import { readAllEstablishments } from "../../Redux/Reducers/EstablishmentReducer
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-
-const { Header, Footer, Sider, Content } = Layout;
 
 const CardsForm = ({establishments}) => {
 

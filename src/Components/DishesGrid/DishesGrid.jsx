@@ -10,12 +10,8 @@ import { getAllDishes, getAllCategories } from "../../Redux/Actions/DishesAction
 
 
 const {Meta} = Card;
-const gridStyle = {
-  width: '25%',
-  textAlign: 'center',
-};
 
-const DishesGrid = ({dishes, getAllDishes, getAllCategories, categories}) => {
+const DishesGrid = ({dishes, getAllDishes, getAllCategories }) => {
 
   const [loading,setLoading] = useState(false);
   const [showDishForm,setShowDishForm] = useState(false);

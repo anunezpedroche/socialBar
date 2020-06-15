@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button } from 'antd';
 import Http from "../../Helpers/Http";
 import { createDish } from "../../Redux/Actions/DishesActions";
 import { readAllCategories } from "../../Redux/Reducers/DishesReducer";
@@ -10,8 +10,6 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 
 import "./DishForm.css";
-
-const Option = Select;
 
 const DishForm = ({categories}) => {
 
@@ -84,8 +82,6 @@ const DishForm = ({categories}) => {
         values.dish.imagen=imgSrc;
         const result = await Http.post(values,'/api/dishes/createDish');
         if(result){
-          // TODO
-          // Arreglar esto cuando se pueda
           result.key=result.id;
           createDish(result);
         }   
@@ -167,7 +163,6 @@ const DishForm = ({categories}) => {
         ]}
       >
         {previewUrl && <img alt="Crop preview" src={previewUrl} />}
-        {/*previewUrl && console.log(previewUrl)*/}
         </Form.Item>
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

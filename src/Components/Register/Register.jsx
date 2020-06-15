@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button } from "antd";
 import Http from "../../Helpers/Http";
 
 import ReactCrop from "react-image-crop";
@@ -156,7 +156,7 @@ const Register = () => {
           />
 
           {previewUrl && <img alt="Crop preview" src={previewUrl} />}
-          {/*previewUrl && console.log(previewUrl)*/}
+           
         </Form.Item>
 
         <Form.Item key="boton"wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

@@ -96,7 +96,7 @@ const rightTableColumns = [
       }
 ];
 
-const EditCardForm = ({ users, techs, project, editCard, card, dishes}) => {
+const EditCardForm = ({ editCard, card, dishes}) => {
 
   const rightDishes = dishes.filter(dish => {
     return card.platos.map(pc => {return pc.id}).includes(dish.id)
@@ -163,7 +163,7 @@ const EditCardForm = ({ users, techs, project, editCard, card, dishes}) => {
 };
 
 const mapStateToProps = (state) => {
-  return { card: readCard(state), dishes: readAllDishes(state)/*, project: readProject(state) */};
+  return { card: readCard(state), dishes: readAllDishes(state) };
 };
 
 export default connect(mapStateToProps,{editCard})(EditCardForm);

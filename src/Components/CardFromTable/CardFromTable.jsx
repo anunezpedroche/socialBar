@@ -6,9 +6,6 @@ import Http from "../../Helpers/Http";
 
 import CardPreview from "../CardPreview/CardPreview";
 import Delivery from "../Delivery/Delivery";
-// Antd
-import { Carousel } from "antd";
-import { Layout } from 'antd';
 
 import { connect } from "react-redux";
 import { readAllDishes } from "../../Redux/Reducers/DishesReducer";
@@ -22,7 +19,7 @@ import socketIOClient from "socket.io-client";
 const PROD = 'http://www.tacumba.es:5000';
 const DEV = 'http://localhost:5000';
 
-const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard, getAllCards}) => {
+const CardFromTable = ({getAllDishes, selectedCard, getAllCards}) => {
   const [ response, setResponse ] = useState(false);
   const [loading,setLoading] = useState(false);
   let {idCard, idTable} = useParams();
@@ -42,7 +39,7 @@ const CardFromTable = ({cards,dishes,getAllDishes, card, selectedCard, getAllCar
         item.cantidad = 1;
         return item}));
       
-      const socket = socketIOClient(PROD);
+      const socket = socketIOClient(DEV);
       socket.emit('joinTable', (dataSource));
       socket.on('acceptedTable',({accepted})=>{
         setResponse(accepted.accepted);

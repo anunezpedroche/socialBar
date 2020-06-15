@@ -1,9 +1,6 @@
-import React,{useState,useCallback} from "react";
-import { Menu, Button } from 'antd';
+import React,{useState} from "react";
+import { Menu } from 'antd';
 import {
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
@@ -12,13 +9,11 @@ import {
 import { connect } from "react-redux";
 import { readUser } from "../../Redux/Reducers/UserReducer";
 import { logOutUser } from "../../Redux/Actions/UserActions";
-import Http from "../../Helpers/Http";
 import Profile from '../Profile/Profile';
 import { Layout } from 'antd';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-const { Header, Footer, Sider, Content } = Layout;
+import { BrowserRouter as  Link } from "react-router-dom";
+const { Sider } = Layout;
 
-const { SubMenu } = Menu;
 
 const Nav = ({user, selectedKey}) => {
 
@@ -32,10 +27,6 @@ const Nav = ({user, selectedKey}) => {
         setCollapsed(!collapsed);   
     
     }
-
-    const replenishData = useCallback (async () =>{
-        const dataSource = await Http.get("/api/establishments/allEstablishments");
-    },[]);
 
         return (
           <div style={{minHeight: '100vh'}}>

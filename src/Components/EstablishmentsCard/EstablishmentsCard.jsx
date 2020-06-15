@@ -18,12 +18,10 @@ import { getAllDishes } from "../../Redux/Actions/DishesActions";
 const { Meta } = Card;
 // Antd
 
-const EstablishmentsCard = ({ card, cards, getAllCards, selectedEstablishment, establishment, selectedCard,getAllDishes}) => {
+const EstablishmentsCard = ({ card, cards, getAllCards, establishment, selectedCard,getAllDishes}) => {
 
   const [loading, setLoading] = useState(false);
   const [showEditCardForm, setShowEditCardForm] = useState(false);
-
-    console.log(typeof(cards));
 
   const replenishDishes = useCallback(async()=>{
     const dataSource = await Http.get("/api/dishes/allDishes");
@@ -51,6 +49,9 @@ const EstablishmentsCard = ({ card, cards, getAllCards, selectedEstablishment, e
     setShowEditCardForm(!showEditCardForm);
     const dataSend = await Http.post(card,'/api/cards/dishesToCard');
 
+    if(dataSend){
+      
+    }
 
 
   });

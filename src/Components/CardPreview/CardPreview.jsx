@@ -24,7 +24,7 @@ return (
         return(
             <div>
             <h3>
-        <img className="image" src={require('../../img/dishes/'+dish.imagen)}/>
+        <img className="image" alt="" src={require('../../img/dishes/'+dish.imagen)}/>
         </h3>
         </div>
         )

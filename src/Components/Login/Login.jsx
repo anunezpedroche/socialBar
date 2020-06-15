@@ -8,10 +8,9 @@ import { connect } from 'react-redux';
 import { logUser } from '../../Redux/Actions/UserActions';
 import Register from '../Register/Register';
 
-import { Layout, Menu, Modal} from 'antd';
+import { Layout, Modal} from 'antd';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 
 const Login = ({logUser}) => {

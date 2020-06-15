@@ -1,10 +1,9 @@
 
 import "./EstablishmentForm.css";
 // Antd
-import { Layout } from 'antd';
 import React, {useState, useCallback} from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button } from 'antd';
 import Http from "../../Helpers/Http";
 import { createEstablishment, selectedEstablishment } from "../../Redux/Actions/EstablishmentActions";
 import { readAllEstablishments } from "../../Redux/Reducers/EstablishmentReducer";
@@ -12,10 +11,7 @@ import { readAllEstablishments } from "../../Redux/Reducers/EstablishmentReducer
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-
-const { Header, Footer, Sider, Content } = Layout;
-
-const EstablishmentForm = ({createEstablishment,establishments}) => {
+const EstablishmentForm = ({ createEstablishment }) => {
 
 
 
@@ -98,11 +94,7 @@ const EstablishmentForm = ({createEstablishment,establishments}) => {
             console.log(values);
             console.log(values.establishment);
             createEstablishment(values.establishment);
-            //selectedEstablishment(establishments[2].id);
-            // TODO
-            // Arreglar esto cuando se pueda
-            /*result.key=result.id;
-            createEstablishment(result);*/
+
           }   
       }
   
