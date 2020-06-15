@@ -11,8 +11,6 @@ exports.dishesToCard = async(req,res) => {
 
   let {platos} = req.body;
 
-  //console.log(platosCarta);
-
   if(!card.platos[0]){
     const [deleteDishToCard] = await connection.execute("DELETE FROM `PlatosCarta` WHERE id_carta = ?",[card.id]);
     console.log("fiesta");
@@ -51,31 +49,11 @@ exports.createCard = async (req,res) =>{
     );
   }
 
-/*
-CREATE TABLE  Cartas ( 
-	id INT NOT NULL AUTO_INCREMENT ,
-    id_local INT NOT NULL,
-	nombre VARCHAR(255),
-	descripcion VARCHAR(255),
-	imagen VARCHAR(255) DEFAULT 'card_default.png',
-    PRIMARY KEY (id,id_local)
-);
-*/
-
   const connection = await model.getConnection();
 
   const card = parseCard(req.body.card);
 
-  console.log(card);
-
   const [rows] = await connection.execute("INSERT INTO `Cartas` VALUES(NULL,?,?,?,?)",[card.local,card.nombre,card.descripcion,imageName]);
-
-  console.log("Usuario "+req.user.id);
-  console.log(rows);
-
-
-//  const [rowsProfiles] = await connection.execute("INSERT INTO `LocalesPerfilesPersonal` VALUES(?,?,?)",[req.user.id,2,rows.insertId]);
-
 
   connection.end();
   res.send({message:'ok'});

@@ -26,7 +26,6 @@ const isCorrectPassword = (myPlaintextPassword, hash) => {
 };
 
 const createWebToken = payload => {
-    /* It's Magic! */
     return jwt.sign(payload, "dawdiw", {
         expiresIn: 60 * 60 * 24
     });
