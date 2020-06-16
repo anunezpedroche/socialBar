@@ -16,7 +16,7 @@ const DishForm = ({categories}) => {
 
   const [upImg, setUpImg] = useState();
   const [imgRef, setImgRef] = useState(null);
-  const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 16 / 9 });
+  const [crop, setCrop] = useState({ unit: 'px', width: 240, height:240 });
   const [previewUrl, setPreviewUrl] = useState();
   const [imgSrc,setImgSrc] = useState(null);
   

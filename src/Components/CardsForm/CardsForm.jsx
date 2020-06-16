@@ -86,11 +86,6 @@ const CardsForm = ({establishments}) => {
           const result = await Http.post(values,'/api/cards/createCard');
           if(result){
 
-            //selectedEstablishment(establishments[2].id);
-            // TODO
-            // Arreglar esto cuando se pueda
-            /*result.key=result.id;
-            createEstablishment(result);*/
           }   
       }
   
@@ -161,7 +156,7 @@ const CardsForm = ({establishments}) => {
 
 
         {previewUrl && <img alt="Crop preview" src={previewUrl} />}
-        {/*previewUrl && console.log(previewUrl)*/}
+
         </Form.Item>
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

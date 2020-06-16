@@ -28,7 +28,7 @@
     flex-direction: row;
     justify-content: left;
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     margin-right: auto;
     
 }
@@ -43,10 +43,18 @@
 
 }
 
+p{
+    font-size: large;
+}
+h2{
+    font-size: 30px;
+}
 h3 {
     color: white;
 }
-
+ul{
+    font-size: large;
+}
 .iconLogin {
     color: white;
     font-size: 2em;
@@ -81,4 +89,10 @@ h3 {
     background-color: #026939;
     color: white;
     border: none;
+}
+
+.footer{
+    font-size: small;
+    text-align: center;
+    font-style: oblique;
 }

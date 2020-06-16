@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
 import { Menu } from 'antd';
 import {
   PieChartOutlined,
@@ -11,11 +11,11 @@ import { readUser } from "../../Redux/Reducers/UserReducer";
 import { logOutUser } from "../../Redux/Actions/UserActions";
 import Profile from '../Profile/Profile';
 import { Layout } from 'antd';
-import { BrowserRouter as  Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 const { Sider } = Layout;
 
 
-const Nav = ({user, selectedKey}) => {
+const Nav = ({selectedKey}) => {
 
     const [collapsed, setCollapsed] = useState(false);
     
@@ -29,12 +29,11 @@ const Nav = ({user, selectedKey}) => {
     }
 
         return (
-          <div style={{minHeight: '100vh'}}>
+          <div style={{minHeight: '100vh',backgroundColor:'#001529'}}>
             <Sider
               collapsible
               collapsed={collapsed}
               onCollapse={toggleCollapse}
-              style={{minHeight:'100vh'}}
             >
             <Menu
               defaultSelectedKeys={[selectedKeyStr]}
@@ -56,7 +55,7 @@ const Nav = ({user, selectedKey}) => {
               </Menu.Item>
               
               <Menu.Item key="4" icon={<MailOutlined />}>Mis Platos<Link to="/Dishes"/></Menu.Item>
-              <Profile collapsed={collapsed}/>
+              <Profile collapsed={collapsed}/> 
             </Menu>
             </Sider>
           </div>

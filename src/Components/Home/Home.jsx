@@ -14,12 +14,10 @@ const Home = () => {
   return (
     <React.Fragment>
       <Layout>
-        <Header style={{minHeight:'10vh', color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} alt="" src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} alt="" src={require("../../img/beer.svg")}/></Header>
+        <Header style={{minHeight:'10vh',color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} alt="" src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} alt="" src={require("../../img/beer.svg")}/></Header>
         <Layout>
         <Nav selectedKey={1}/>
-        <Content
-          style={{backgroundColor:'darkslateblue'}}
-        >
+        <Content>
         <Carousel effect="fade" autoplay autoplaySpeed="10"> 
         <div>
           <h3>SocialBar</h3>

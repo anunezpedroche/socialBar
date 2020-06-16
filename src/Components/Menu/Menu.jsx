@@ -57,9 +57,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
         <Header style={{minHeight:'10vh', color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} alt="" src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} alt="" src={require("../../img/beer.svg")}/></Header>
             <Layout>
             <Nav selectedKey={3}/>
-            <Content
-              style={{backgroundColor:'darkslateblue'}}
-            >
+            <Content>
               <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('1'):selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 

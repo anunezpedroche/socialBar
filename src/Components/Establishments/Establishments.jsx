@@ -11,6 +11,7 @@ import {
 } from "../../Redux/Actions/EstablishmentActions";
 
 import TableForm from '../TableForm/TableForm';
+import { useEffect } from "react";
 
 const {Option} = Select;
 
@@ -24,18 +25,25 @@ const Establishments = ({establishment}) => {
     textAlign: 'center',
   };
 
+  useEffect(()=>{
+    if(!establishment.cartas[0]){
+      setIdCard("noCards");
+    }else{
+      setIdCard(establishment.cartas[0].id);
+    }
+  },[]);
 
   return (
     <div className="establishmentWorkspace">
 
-
-    <Card title={establishment.nombre}>    
-    
-      <Select defaultValue={1} style={{ width: 120 }} onChange={(e)=>{setIdCard(e)}}>
+    <Select defaultValue={idCard} style={{ width: 120 }} onChange={(e)=>{setIdCard(e)}}>
       {establishment.cartas.map((carta)=>{return(
         <Option value={carta.id} key={carta.id}>{carta.nombre}</Option>
       )})}
       </Select>
+    <Card title={establishment.nombre}>    
+    
+
 
       {establishment.mesas.map((mesa)=>{
 return(

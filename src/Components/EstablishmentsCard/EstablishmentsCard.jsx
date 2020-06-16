@@ -1,11 +1,10 @@
 import React, { useEffect, useCallback, useState } from "react";
 import "./EstablishmentsCard.css";
 import Http from "../../Helpers/Http";
-import { Card, Avatar, Modal } from "antd";
+import { Card, Modal } from "antd";
 import {
   EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
+
 } from "@ant-design/icons";
 import EditCardForm from '../EditCardForm/EditCardForm';
 import { connect } from "react-redux";
@@ -35,7 +34,12 @@ const EstablishmentsCard = ({ card, cards, getAllCards, establishment, selectedC
     const dataSource = await Http.get(
       "/api/cards/allCardsEstablishmentsId/" + establishment.id
     );
-    getAllCards(dataSource);
+    getAllCards(dataSource.map((item)=>{
+      if(item.imagen===null){
+        item.imagen = 'default_card.svg'   
+      }
+      return item;
+    }));
     setLoading(true);
   }, [establishment]);
 
@@ -50,7 +54,7 @@ const EstablishmentsCard = ({ card, cards, getAllCards, establishment, selectedC
     const dataSend = await Http.post(card,'/api/cards/dishesToCard');
 
     if(dataSend){
-      
+
     }
 
 
@@ -62,6 +66,7 @@ const EstablishmentsCard = ({ card, cards, getAllCards, establishment, selectedC
         ? 
         <div className="cardContainer">{
         cards.map((carta) => {
+          
             return(
             <Card
             className="cartas"
@@ -70,19 +75,16 @@ const EstablishmentsCard = ({ card, cards, getAllCards, establishment, selectedC
               cover={
                 <img
                   alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  src={require(`../../img/cards/${carta.imagen}`)}
                 />
               }
               actions={[
-                <SettingOutlined key={"setting"+carta.id} />,
+                
                 <EditOutlined key={"edit"+carta.id} onClick={()=>{setShowEditCardForm(!showEditCardForm); selectedCard(carta.id)}} />,
-                <EllipsisOutlined key={"ellipsis"+carta.id} />,
+                
               ]}
             >
               <Meta
-                avatar={
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                }
                 title={carta.nombre}
                 description={carta.descripcion}
               />

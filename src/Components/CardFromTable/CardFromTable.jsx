@@ -39,7 +39,7 @@ const CardFromTable = ({getAllDishes, selectedCard, getAllCards}) => {
         item.cantidad = 1;
         return item}));
       
-      const socket = socketIOClient(DEV);
+      const socket = socketIOClient(PROD);
       socket.emit('joinTable', (dataSource));
       socket.on('acceptedTable',({accepted})=>{
         setResponse(accepted.accepted);
@@ -61,7 +61,9 @@ const CardFromTable = ({getAllDishes, selectedCard, getAllCards}) => {
 
     return (
 <React.Fragment>
+  <div className="workspace">
       {(response===true)? <p><Delivery/></p> : <CardPreview/>}
+  </div>
 </React.Fragment>
   );
 };

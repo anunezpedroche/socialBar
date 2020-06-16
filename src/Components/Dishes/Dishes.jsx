@@ -18,12 +18,10 @@ const Dishes = () => {
       <Header style={{minHeight:'10vh', color:'white',fontSize:'30px', textAlign:'center'}}><img style={{width:50}} alt=""src={require("../../img/beer.svg")}/> Social Bar Management Tool <img style={{width:50}} alt="" src={require("../../img/beer.svg")}/></Header>
         <Layout>
         <Nav selectedKey={4}/>
-        <Content
-          style={{backgroundColor:'darkslateblue'}}
-        >
-        <Carousel effect="fade" autoplay autoplaySpeed="10"> 
+        <Content>
+
         <DishesGrid/>
-      </Carousel></Content>
+        </Content>
         </Layout>
       </Layout>
     </React.Fragment>

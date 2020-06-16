@@ -24,7 +24,6 @@ exports.findById = async (id) => {
   connection.end();
   if (rows.length) {
     const user = parseUser(rows[0]);
-    //console.log(user);
     return user;
   }
   return false;
@@ -34,7 +33,7 @@ exports.createUser = async (req, res) => {
 
 
 
-  let imageName = "default.png";
+  let imageName = "default_user.png";
 
   if (req.body.user.avatar) {
     var base64Data = req.body.user.avatar.replace(
@@ -56,11 +55,6 @@ exports.createUser = async (req, res) => {
 
  req.body.user.password = model.getEnCrypted(req.body.user.password);
 
- console.log(req.body.user.password);
-
-
-
-  console.log(req.body.user);
   const connection = await model.getConnection();
   const user = parseUser(req.body.user);
   const [

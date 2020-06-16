@@ -18,7 +18,7 @@ const EstablishmentForm = ({ createEstablishment }) => {
 
     const [upImg, setUpImg] = useState();
     const [imgRef, setImgRef] = useState(null);
-    const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 16 / 9 });
+    const [crop, setCrop] = useState({ unit: 'px', width: 300,height:300});
     const [previewUrl, setPreviewUrl] = useState();
     const [imgSrc,setImgSrc] = useState(null);
     
@@ -139,6 +139,19 @@ const EstablishmentForm = ({ createEstablishment }) => {
           >
             <Input />
             </Form.Item>
+
+            <Form.Item
+            name={['establishment', 'mesas']}
+            label="Cantidad de mesas"
+            rules={[
+                {
+                    required: true,
+                  },
+            ]}
+           
+          >
+            <Input />
+            </Form.Item>
           <Form.Item name={['establishment', 'imagen']} label="Imagen"
       rules={[
         {
@@ -159,7 +172,7 @@ const EstablishmentForm = ({ createEstablishment }) => {
 
 
         {previewUrl && <img alt="Crop preview" src={previewUrl} />}
-        {/*previewUrl && console.log(previewUrl)*/}
+
         </Form.Item>
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

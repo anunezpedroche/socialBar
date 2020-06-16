@@ -13,10 +13,7 @@ exports.dishesToCard = async(req,res) => {
 
   if(!card.platos[0]){
     const [deleteDishToCard] = await connection.execute("DELETE FROM `PlatosCarta` WHERE id_carta = ?",[card.id]);
-    console.log("fiesta");
   }
-
-  console.log(card);
 
   platos.map(async(dish)=>{
     await connection.execute("DELETE FROM `PlatosCarta` WHERE id_plato = ? AND id_carta=?",[dish.id,card.id]);
@@ -29,7 +26,7 @@ exports.dishesToCard = async(req,res) => {
 
 exports.createCard = async (req,res) =>{
 
-  let imageName = "default.png";
+  let imageName = "default_card.svg";
 
   if (req.body.card.imagen) {
     var base64Data = req.body.card.imagen.replace(
@@ -133,7 +130,7 @@ exports.cardFromId = async (req, res) => {
 };
 
 const parseCard = (results) =>{
-  console.log(results);
+  
   return{
     id:results.id,
     nombre:results.nombre,

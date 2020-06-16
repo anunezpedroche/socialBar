@@ -10,6 +10,7 @@ import { logOutUser} from '../../Redux/Actions/UserActions';
 import { logout as deleteCookie } from '../../Helpers/auth-helpers';
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = ({ user, logOutUser, collapsed }) => {
 
@@ -20,7 +21,7 @@ const Profile = ({ user, logOutUser, collapsed }) => {
     const data = [
         `${nombre} ${apellidos}`,
     ];
-    const icon = require(`../../img/admin.png`);
+    const icon = (user.avatar)?user.avatar:'default_user.jpg';
 
     const logOutUserAndRemoveCookie = () =>{
         deleteCookie();
@@ -28,7 +29,12 @@ const Profile = ({ user, logOutUser, collapsed }) => {
         setLogginOut(true);
     }
 
-   
+   useEffect(()=>{
+    if(user.avatar===null){
+        user.avatar = 'default_user.jpg';
+    }
+   },[])
+
     return (
         
 
@@ -48,7 +54,7 @@ const Profile = ({ user, logOutUser, collapsed }) => {
             </div>
             :
             <div className="unCollapsedProfile">
-                <Avatar src={icon} size="medium" />
+                <Avatar src={require(`../../img/usr/${icon}`)} size="medium" />
                 <div className="nickname">{nickname}</div>
                 <div className="nombreCompleto">{data} &nbsp;&nbsp;</div>
                 <Button

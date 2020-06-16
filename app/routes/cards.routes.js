@@ -14,8 +14,5 @@ router.get('/allCardsEstablishmentsId/:id',passport.authenticate('jwt', { sessio
 router.post('/dishesToCard',passport.authenticate('jwt', { session: false }), dishesToCard);
 router.post('/createCard',passport.authenticate('jwt', { session: false }), createCard);
 router.get('/cardsFromId/:id', cardFromId);
-/*router.get('/findAllProjectsByCourse/:id',passport.authenticate('jwt', { session: false }), findAllProjectsByCourse);
-router.post('/updateProject/:id',passport.authenticate('jwt', { session: false }), updateProject);
-router.post('/updateKanbanProject/:id',passport.authenticate('jwt', { session: false }), updateKanbanProject);
-*/
+
 module.exports = router

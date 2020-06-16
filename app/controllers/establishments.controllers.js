@@ -6,7 +6,7 @@ const {
 
 exports.createEstablishment = async(req,res) =>{
 
-  let imageName = "default.png";
+  let imageName = "default_establishment.jpeg";
 
   if (req.body.establishment.imagen) {
     var base64Data = req.body.establishment.imagen.replace(
@@ -32,7 +32,7 @@ exports.createEstablishment = async(req,res) =>{
 
   const establishment = parseEstablishment(req.body.establishment);
 
-  console.log(imageName);
+  console.log(establishment.mesas);
 
   const [rows] = await connection.execute("INSERT INTO `Locales` VALUES(NULL,?,?,?)",[establishment.nombre,establishment.ubicacion,imageName]);
 
@@ -42,6 +42,10 @@ exports.createEstablishment = async(req,res) =>{
 
   const [rowsProfiles] = await connection.execute("INSERT INTO `LocalesPerfilesPersonal` VALUES(?,?,?)",[req.user.id,2,rows.insertId]);
 
+  for(var i = 0;i<establishment.mesas;i++){
+  
+    const [tables] = await connection.execute("INSERT INTO `Mesas` VALUES(NULL,?,NULL,NULL,'Vacía')",[rows.insertId]);
+  }
 
   connection.end();
   res.send({message:'ok',id_local:rows.insertId,id_perfil:2,id_usuario:req.user.id});
@@ -96,6 +100,7 @@ const parseEstablishment = (results) =>{
     id:results.id,
     nombre:results.nombre,
     ubicacion:results.ubicacion,
-    imagen: results.imagen
+    imagen: results.imagen,
+    mesas: parseInt(results.mesas)
   }
 }

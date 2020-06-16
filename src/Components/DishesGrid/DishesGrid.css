@@ -1,10 +1,13 @@
 .platosContainer{
-    display:flex;
-    flex-direction: row;
-    margin:15px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(auto-fill,340px);
+    margin-left: 15px;
+
 }
 
 .platos{
-    margin-right: 15px;
-    margin-bottom: 15px;
+ margin-top: 10px;
 }
