@@ -161,7 +161,7 @@ const CardsForm = ({establishments}) => {
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button type="primary" htmlType="submit">
-              Crear Local
+              Crear Carta
             </Button>
           </Form.Item>
 

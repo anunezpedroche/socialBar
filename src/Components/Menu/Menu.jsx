@@ -29,7 +29,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
 
         dataSource.unshift({
           id: "0",
-          nombre: "Añadir local",
+          nombre: "Añadir carta",
           add : 1
         });
 
@@ -58,7 +58,7 @@ const Menu = ({establishments, getAllEstablishments, selectedEstablishment,estab
             <Layout>
             <Nav selectedKey={3}/>
             <Content>
-              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('1'):selectedEstablishment(activeKey)}}>
+              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('0'):selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 
                   return (

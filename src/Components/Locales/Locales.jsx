@@ -57,15 +57,18 @@ const Locales = ({establishments, getAllEstablishments, selectedEstablishment,es
             <Layout>
             <Nav selectedKey={2}/>
             <Content>
-              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('1'):selectedEstablishment(activeKey)}}>
+              <Tabs className="tabsEstablishments" defaultActiveKey={establishment.id} onTabClick={(activeKey)=>{(activeKey==='0')?selectedEstablishment('0'):selectedEstablishment(activeKey)}}>
                 {establishments.map((establish) =>{
 
                   return (
 
                     (establish.add===1)?
+
+                    
                       <TabPane tab={establish.nombre} key={establish.id}>
 
                         <EstablishmentForm/>
+
                       </TabPane>
                       
                     :

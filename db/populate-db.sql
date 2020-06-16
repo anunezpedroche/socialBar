@@ -171,8 +171,8 @@ CREATE TABLE  Platos (
 );
 */
 
-INSERT INTO Platos VALUES(NULL, 'Bravas', 'Patas bravas con alioli y salsa picante', 3.50, 'bravas.png',1);
-INSERT INTO Platos VALUES(NULL, 'Calamares', 'Calamares del mar cantábrico', 4.50, 'calamares.png',1);
+INSERT INTO Platos VALUES(NULL, 'Bravas', 'Patas bravas con alioli y salsa picante', 3.50, 'default.png',1);
+INSERT INTO Platos VALUES(NULL, 'Calamares', 'Calamares del mar cantábrico', 4.50, 'default.png',1);
 
 
 /*

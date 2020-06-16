@@ -78,7 +78,7 @@ const DishesGrid = ({dishes, getAllDishes, getAllCategories }) => {
       cover={<img alt="example" src={dish.icon} 
       />}
     >
-      <Meta title={dish.nombre} description={dish.descripcion} />
+      <Meta title={dish.titulo} description={dish.descripcion} />
     </Card>)
     })
     :""

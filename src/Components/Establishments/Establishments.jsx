@@ -26,7 +26,7 @@ const Establishments = ({establishment}) => {
   };
 
   useEffect(()=>{
-    if(!establishment.cartas[0]){
+    if(establishment.cartas[0]===undefined){
       setIdCard("noCards");
     }else{
       setIdCard(establishment.cartas[0].id);

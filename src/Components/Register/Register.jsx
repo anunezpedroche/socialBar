@@ -98,6 +98,7 @@ const Register = () => {
 
         <Form.Item
         key="contraseña"
+        
           name={["user", "password"]}
           label="Password"
           rules={[
@@ -106,7 +107,7 @@ const Register = () => {
             },
           ]}
         >
-          <Input />
+          <Input.Password />
         </Form.Item>
 
         <Form.Item

@@ -28,14 +28,14 @@ Create table Personal (
 	password VARCHAR(255) NOT NULL,
 	nombre VARCHAR(255) NOT NULL,
 	apellidos VARCHAR(255) NOT NULL,
-	avatar VARCHAR(255) DEFAULT "default.png"
+	avatar VARCHAR(255) DEFAULT "default_user.jpg"
 );
 
 Create table Locales ( 
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(255) NOT NULL,
 	ubicacion VARCHAR(255) NOT NULL,
-	imagen VARCHAR(255) DEFAULT "local_default.png"
+	imagen VARCHAR(255) DEFAULT "default_establishment.jpg"
 );
 
 CREATE TABLE Perfiles (
@@ -67,7 +67,7 @@ CREATE TABLE  Cartas (
     id_local INT NOT NULL,
 	nombre VARCHAR(255),
 	descripcion VARCHAR(255),
-	imagen VARCHAR(255) DEFAULT 'card_default.png',
+	imagen VARCHAR(255) DEFAULT 'default_card.jpg',
     PRIMARY KEY (id,id_local)
 );
 

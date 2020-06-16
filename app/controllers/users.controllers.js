@@ -33,7 +33,7 @@ exports.createUser = async (req, res) => {
 
 
 
-  let imageName = "default_user.png";
+  let imageName = "default_user.jpg";
 
   if (req.body.user.avatar) {
     var base64Data = req.body.user.avatar.replace(

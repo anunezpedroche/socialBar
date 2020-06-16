@@ -21,7 +21,7 @@ const dev = 'http://localhost:3001';
 const prod = 'http://www.tacumba.es';
 // Middlewares
 app.use(express.json({limit:'10mb'}));
-app.use(cors({credentials: true, origin: dev}));
+app.use(cors({credentials: true, origin: prod}));
 app.use(cookieParser());
 
 app.use(express.urlencoded({limit:'10mb', extended: true }));
