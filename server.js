@@ -16,7 +16,8 @@ require('./config/passport');
 * 
 *  https://mikrotik.com/product/RB960PGS
 *   
-*/  
+*/
+console.log("patata");
 const dev = 'http://localhost:3001';
 const prod = 'http://www.tacumba.es';
 // Middlewares
